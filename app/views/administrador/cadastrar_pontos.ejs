@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%- include('../components/head') %>
+</head>
+
+<body>
+	<main> 
+		<section class="container_layout">
+			<%- include('../components/sidebar') %>
+			<div>
+				<%- include('../components/header') %>
+				<div class="tela fundo">
+					<div class="titulo">
+						<h1>Registrar Ponto</h1>
+					</div>
+					<div class="msg">
+						<%if(msg.length >0){%>
+							<%for(var i = 0; i <msg.length;i++){%>
+								<div class="card-msg">
+									<span><i class="material-icons">check_circle</i><%=msg[i].msg%></span>
+								</div>
+							<%}%>
+						<%}%>
+					</div>
+					<div class="form_reclamação">
+						<form action="/cadastrar_Ponto" method="post">
+							<div class="container_input">
+								<label>Latitude </label>
+								<input type="text" name="lat_ponto">
+							</div>
+							<div class="container_input">
+								<label>Longitude </label>
+								<input type="text" name="lng_ponto">
+							</div>
+							<div class="container_input">
+								<label>Bairro</label>
+								<select name="id_bairro">
+									<option>Selecione uma opção</option>
+									<%for(var i = 0;i<bairros.length;i++){%>
+										<option value="<%=bairros[i].id_bairro%>"><%=bairros[i].nome_bairro%></option>
+									<%}%>
+								</select>
+							</div>
+							<div class="container_input">
+								<label>Rua</label>
+								<select name="id_rua">
+									<option>Selecione uma opção</option>
+									<%for(var i = 0;i<rua.length;i++){%>
+										<option value="<%=rua[i].id_rua%>"><%=rua[i].nome_rua%></option>
+									<%}%>
+								</select>
+							</div>
+							<div class="btns_form">
+								<div>
+									<input type="submit" value="Salvar" >
+								</div>
+								<div>
+									<input type="reset" value="Limpar">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<%- include('../components/links') %>
+</body>
+</html>

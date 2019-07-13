@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head') %>
+  <body>
+    <main>
+      <section class="container_layout">
+        <%- include('../components/sidebar') %>
+        <div>
+          <%- include('../components/header') %>
+          <div  class="lista_de_horarios">
+            <div class="info_dados">
+            </div>
+            <div>
+              <div class="tela">
+                <div>
+                  <%for(var i = 0 ; i< horarios.length;i++){%>
+                  <div class="card-horario">
+                    <h1><%=horarios[i].nome_sentidovia%></h1>
+                    <div class="linha"></div>
+                      <ul>
+                        <li><b>Inicio:</b><%=horarios[i].saida_linha%> </li>
+                        <li><b>Final:</b> <%=horarios[i].chegada_linha%></li>
+                        <li><%=horarios[i].horario_time%></li>
+                      </ul>
+                  </div>
+                  <%}%>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+  <%- include('../components/links') %>
+</html>

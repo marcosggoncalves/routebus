@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head') %>
+<body>
+<main>
+  <section class="container_layout">
+    <%- include('../components/sidebar') %>
+    <div>
+      <%- include('../components/header') %>
+      <div class="tela fundo">
+        <%if(msg.length >0){%>
+          <%for(var a = 0; a <msg.length;a++){%>
+            <div class="card-msg">
+              <span><i class="material-icons">cancel</i><%=msg[a].msg%></span>
+             </div>
+          <%}%>
+        <%}%>
+        <div class="container">
+          <%for(var i = 0;i<favoritos.length;i++){%>
+            <div class="card-favoritos">
+                <div>
+                  <div class="card-favoritos-info">
+                      <div >
+                          <ul>
+                             <li><a href="/ponto/<%=favoritos[i].id_bairro%>"><i class="material-icons">location_on</i><%=favoritos[i].nome_bairro%></a></li>
+                             <li><%=favoritos[i].data_salvo%></li>
+                          </ul>
+                      </div>
+                  </div>
+                  <img src="http://s2.glbimg.com/v42PknUjNHer8mislIMigF-w9nY=/695x0/s.glbimg.com/po/tt2/f/original/2015/10/15/capturar3.png">
+                </div>
+            </div>
+          <%}%>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF8QP6R3rJFZLZJcEsee3B3a1wz6Pul8E&callback=initMap" type="text/javascript"></script>
+<%- include('../components/links') %>
+</html>

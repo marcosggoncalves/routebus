@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head') %>
+<body>
+<main>
+  <section class="container_layout">
+    <%- include('../components/sidebar') %>
+    <div>
+      <%- include('../components/header') %>
+      <div class="tela">
+        <table>
+            <tr>
+              <th>cod rua/avenida</th>
+              <th>Nome rua/avenida</th>
+            </tr>
+            <%for(var i = 0;i<ruas.length;i++){%>
+              <tr>
+                <td><%=ruas[i].id_rua%></td>
+                <td><%=ruas[i].nome_rua%></td>
+              </tr>
+            <%}%>
+           </table>
+      </div>
+    </div>
+  </section>
+</main>
+<%- include('../components/links') %>
+</html>

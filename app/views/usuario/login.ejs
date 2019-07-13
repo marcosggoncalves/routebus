@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<%- include('../components/head') %>
+<body>
+<main>
+	<section class="fundo_login">
+		<div class="login_form">
+			<div class="titulo">
+				<h1>Acessa sua conta !!!</h1>	
+			</div>
+			<form action="/logar"  method="POST" >
+				<div class="container_input">
+					<label>Usuário</label>
+					<input type="text" name="user" value="<%=dados.user%>">
+				</div>
+				<div class="container_input">
+					<label>Senha:</label>
+					<input type="password" name="password" value="<%=dados.password%>">
+				</div>
+
+				<div class="esqueceu_senha">
+					<a href="/esquece/senha">Esqueceu senha</a>
+				</div>
+				<div class="container_input">
+					<input type="submit" value="Entrar">
+				</div>
+				<div class="espaco_central"></div>
+				<div class="container_input cadastrar">
+					<a href="/cadastrar/conta/usuario"><input type="button" value="Cadastrar"></a>
+				</div>
+			</form>
+			<div class="espaço"></div>
+			<div class="msg">
+				<%if(msg.length > 0){%>
+					<%for(var a = 0; a <msg.length;a++){%>
+						<div class="card-msg">
+							<span><i class="material-icons">cancel</i><%=msg[a].msg%></span>
+						</div>
+					<%}%>
+				<%}%>
+			</div>
+		</div>
+	</section>
+</main>
+<%- include('../components/links') %>
+</html>

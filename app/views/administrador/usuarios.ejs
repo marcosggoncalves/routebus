@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head') %>
+<body>
+<main>
+  <section class="container_layout">
+    <%- include('../components/sidebar') %>
+    <div>
+      <%- include('../components/header') %>
+      <div class="tela">
+        <div class="card-bairro">
+                <form>
+                  <div class="container_input">
+                    <input type="text" id="pesquisa" placeholder="Procurar usuario especificas">
+                  </div>
+                </form>
+              </div>            <table>
+            <tr >
+              <th>Perfil</th>
+              <th>Nome </th>
+              <th>E-mail</th>
+              <th>Telefone</th>
+              <th>CPF</th>
+            </tr>
+            <%for(var i = 0;i<usuarios.length;i++){%>
+              <tr id="busca">
+                <td><img src="<%=usuarios[i].perfil_usuario%>"></td>
+                <td><a href="/reclamacao/usuario/<%=usuarios[i].id_usuario%>"><%=usuarios[i].nome_usuario%></a></td>
+                 <td><%=usuarios[i].email_usuario%></td>
+                  <td><%=usuarios[i].telefone_usuario%></td>
+                  <td><%=usuarios[i].cpf_usuario%></td>
+              </tr>
+            <%}%>
+           </table> 
+      </div>
+    </div>
+  </section>
+</main> 
+<script type="text/javascript" src="js/pesquisa.js"></script>
+<%- include('../components/links') %>
+</html>

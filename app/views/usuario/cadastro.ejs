@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<%- include('../components/head') %>
+<body>
+<main>
+	<section class="fundo_login">
+		<div class="login_form">
+			<div class="titulo">
+				<h1>Cadastre sua conta na Routebus !!!</h1>	
+			</div>
+			<form action="/cadastrar/conta/usuario/salvar"  method="POST"  enctype="multipart/form-data" > 
+				<div class="container_input">
+					<label>Nome completo</label>
+					<input type="text" name="nome_usuario" >
+				</div>
+				<div class="container_input">
+					<label>Email:</label>
+					<input type="text" name="email_usuario" >
+				</div>
+				<div class="container_input">
+					<label>Senha:</label>
+					<input type="text" name="senha_usuario" >
+				</div>
+				<div class="container_input">
+					<label>Telefone:</label>
+					<input type="text" name="telefone_usuario" >
+				</div>
+				<div class="container_input">
+					<label>CPF:</label>
+					<input type="text" name="cpf_usuario" >
+				</div>
+				<div class="container_input upload">
+					<label for="anexo_arquivo"><i class="material-icons">attachment</i>Escolher Foto</label>
+					<input type="file" id="anexo_arquivo" name="anexo_arquivo" multiple >
+				</div>
+				<div id="list"></div>
+				<div class="container_input">
+					<input type="submit" value="Enviar cadastro ">
+				</div>
+			</form>
+			<div class="espaço"></div>
+			<div class="msg">
+				<%if(msg.length > 0){%>
+					<%for(var a = 0; a <msg.length;a++){%>
+						<div class="card-msg">
+							<span><i class="material-icons">cancel</i><%=msg[a].msg%></span>
+						</div>
+					<%}%>
+				<%}%>
+			</div>
+		</div>
+	</section>
+</main>
+<script type="text/javascript" src="js/carregar_arquivo.js"></script>
+<%- include('../components/links') %>
+</html>

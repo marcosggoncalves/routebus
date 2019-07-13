@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head') %>
+<body>
+<main>
+  <section class="container_layout">
+    <%- include('../components/sidebar') %>
+    <div>
+      <%- include('../components/header') %>
+      <div class="tela">
+        <table>
+            <tr>
+              <th>Nome Linha</th>
+              <th>Saida Linha</th>
+              <th>Chegada Linha</th>
+            </tr>
+            <%for(var i = 0;i<linhas.length;i++){%>
+              <tr>
+                <td><%=linhas[i].nome_linha%></td>
+                <td><%=linhas[i].saida_linha%></td>
+                <td><%=linhas[i].chegada_linha%></td>
+              </tr>
+            <%}%>
+           </table>
+      </div>
+    </div>
+  </section>
+</main>
+<%- include('../components/links') %>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<%- include('../components/head_index') %>
+<body>
+<main>
+	<section class="container_layout">
+		<%- include('../components/sidebar') %>
+		<div>
+			<%- include('../components/header') %>
+			<div>
+				<div id="mapa"></div>
+			</div>
+		</div>
+		<script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io();
+			socket.on('sendToClient', function (data) {
+			    alert(data.hello);
+			     
+			    socket.emit('receivedFromClient', { my: 'data' });
+			});
+        </script>
+	</section>
+</main>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF8QP6R3rJFZLZJcEsee3B3a1wz6Pul8E&callback=initMap" type="text/javascript"></script>
+<%- include('../components/links') %>
+</html>

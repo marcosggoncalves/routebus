@@ -1,0 +1,507 @@
+*{
+	padding:0;
+	margin:0;
+	outline:none;
+	font-family: 'Roboto', sans-serif;
+	list-style:none;
+	text-decoration:none;
+	box-sizing:border-box;
+}
+:root{
+	--color-font-white:#ffffff;
+	--color-font-black:#000000;
+	--tamanho-aside:24vw;
+	--tamanho-aside-mobile:80vw;
+	--tamanho-geral-vw:100vw;
+	--tamanho-geral-vh:100vh;
+	--tamanho-geral-porcentagem-w:100%;
+	--tamanho-geral-porcentagem-h:100%;
+	--tamanho-input:0.4rem;
+	--tamanho-header:1.6rem;
+	--header:#22516B;
+	--header-rgba:rgba(34, 81, 107, 0.70);
+	--color-btn-limpar:#A52A2A	;
+	--padding:10px 10px;
+	--padding_2:20px 20px;
+	--box-sobra:1px 1px 1px 1px #ededed;
+	--box-sobra_2:3px 3px 3px 3px #fcfcfc;
+	--margin-top-20px:20px;
+	--margin-bottom-10px:10px;
+	--tamenho-login-form-container:30vw;
+	--tamanho-login-form-container:100vw;
+	--fundo-white-rgba:rgba(255,255,255,1);
+}
+html,body{
+	height:var(--tamanho-geral-vh);
+}
+header{
+	padding:var(--tamanho-header);
+	background:var(--header);
+	box-shadow:var(--box-sobra_2);
+}
+header nav ul{
+	align-items:center;
+	display:flex;
+	justify-content:space-between;
+}
+header  nav ul li a{
+	color:var(--color-font-white);
+}
+p{
+	text-align:justify;
+	word-break:break-all;
+}
+.itens a{
+	font-size:0.8rem;
+}
+.esqueceu_senha{
+	align-items:center;
+	display:flex;
+	height:8vh;
+}
+.esqueceu_senha a{
+	color:var(--header);
+}
+.titulo_container{
+	padding:20px 20px;
+}
+.container_layout{
+	display:flex;
+	position:relative;
+}
+.container_layout div:nth-child(2){
+	width:var(--tamanho-geral-porcentagem-w);
+}
+
+.aside #aside{
+	width:var(--tamanho-aside-mobile);
+	height:var(--tamanho-geral-porcentagem-w);
+	box-shadow:var(--box-sobra);
+}
+.aside #aside nav ul li{
+	border-top: 1px solid #dedede;
+	padding:var(--padding);
+}
+.aside #aside nav ul li:hover{
+	border-left:5px solid var(--header);
+	background:#fcfcfc;
+	transition:0.5s;
+}
+.aside #aside nav ul li a{
+	color:var(--color-font-black);
+}
+.aside #aside nav ul li ul{
+	display:none;
+	padding:var(--padding) var(--padding);
+}
+.aside #aside nav ul li ul li{
+	padding:10px 10px;
+}
+.aside #aside nav ul li:hover ul{
+	display:flex;
+	flex-direction:column;
+	transition:0.9rem;
+}
+.perfil div{
+	display:flex;
+	padding:var(--padding);
+	align-items:center;
+}
+
+.perfil h1{
+	padding-left:10px;
+	font-size:1rem;
+}
+.perfil img{
+	border-radius:40px;
+	max-width:5rem;
+}
+#mapa{	
+	height:var(--tamanho-geral-vh);
+}
+#mapas{
+	height:70vh;
+}
+table {
+    border-collapse: collapse;
+    width: var(--tamanho-geral-porcentagem-w);
+}
+
+th, td {
+    text-align: center;
+    padding:0.8rem;
+}
+td img{
+	max-width: 3rem;
+}
+td a{
+	color:var(--color-font-black);
+}
+tr{
+	background-color:var(--color-font-white);
+	box-shadow:var(--box-sobra);
+}
+.lista_de_horarios{
+	padding:var(--padding);
+}
+.lista_de_horarios h1{
+	font-size:1rem;
+	text-align:center;
+	line-height:3rem;
+	font-weight:initial;
+
+}
+.card-reclamações{
+	box-shadow:var(--box-sobra);
+	background:var(--color-font-white);
+	padding:var(--padding);
+	margin-bottom:20px;
+	height:var(--tamanho-geral-porcentagem-h);
+}
+
+.container-dados-pessoais {
+	align-items:center;
+	display:flex;
+	justify-content:center;
+}
+.container-dados-pessoais img{
+	width:140px;
+	border-radius:100px;
+}
+.container-dados-pessoais div{
+	padding-right:20px;
+}
+.titulo{
+	border-left:4px solid var(--header);
+	padding:var(--padding);
+	margin-top:10px;
+	margin-bottom:20px;
+}
+.titulo h1{
+	font-size:1rem;
+	font-weight:inherit;
+}
+.tela{
+	height:100vh;
+	padding:var(--padding_2)var(--padding_2);
+}
+.container_input{
+	display:flex;
+	flex-direction:column;
+}
+
+label{
+	line-height:2rem;
+}
+textarea{
+	height:20vh;
+}
+input,textarea,select{
+	background:none;
+	width:100%;
+	border:1px solid #cdcdcd;
+	padding:0.4rem;
+	border-radius:4px;
+
+}
+input[type='file']{
+	display:none;
+}
+.upload{
+	margin-top:20px;
+	margin-bottom:20px;
+	border-style:dotted ;
+	border-color:var(--header);
+}
+.upload label{
+	align-items:center;
+	display:flex;
+	justify-content:center;
+	padding:var(--padding_2);
+	color:var(--header);
+}
+.btn button{
+	width:12%;
+	height:40px;
+}
+.btns_form{
+	display:flex;
+	margin-top:var(--margin-top-20px);
+	margin-bottom:20px;
+}
+.btns_form div{
+	padding-right:10px;
+}
+.btns_form input[type='submit'],[type='reset'],[type='button'],button{
+	width:100px;
+	height:34px;
+	border:none;
+	box-shadow:var(--box-sobra);
+	border-radius:inherit;
+}
+.btns_form button{
+	width:120px;
+	height:35px;
+	border:none;
+	box-shadow:var(--box-sobra_2);
+}
+.btns_form input[type='submit'],[type='button'],button{
+	background:var(--header);
+	color:var(--color-font-white);
+}
+.btns_form input[type='reset']{
+	background:var(--color-btn-limpar);
+	color:var(--color-font-white);
+}
+.card-msg{
+	background:var(--header-rgba);
+	padding:20px;
+	box-shadow:var(--box-sobra);
+	margin-bottom:var(--margin-bottom-10px);
+}
+.card-msg span {
+	align-items:center;
+	display:flex;
+	color:var(--color-font-white);
+	font-size:0.8rem;
+}
+.card-msg span i{
+	font-size:1.3rem;
+	padding-right:10px;
+}
+.card-reclamação,.card-reclamação-comentarios,.upload_arquivos,.card-horario{
+	background:var(--color-font-white);
+	padding:var(--padding_2);
+	box-shadow: var(--box-sobra);
+	margin-bottom:20px;
+}
+.card-horario{
+	padding:10px;
+}
+.card-horario   ul{
+	display:flex;
+	justify-content:space-around;
+}
+.card-horario h1,span,p{
+	font-size:1rem;
+}
+.card-reclamação p{
+	font-size:0.8rem;
+}
+.upload_arquivos{
+	display:flex;
+	align-items:center;
+}
+.upload_arquivos img{
+	width:60px;
+	padding-right:10px;
+}
+.card-reclamação-comentarios .dados{
+	display:flex;
+	flex-direction:column;
+}
+.card-reclamação-comentarios .dados div{
+	align-items:center;
+	display:flex;
+	margin-bottom:5px;
+}
+.card-reclamação-comentarios .dados img{
+	max-width:2.5rem;
+	border-radius:100px;
+}
+.nome_comentario{
+	color:var(--header);
+	padding-left:10px;
+}
+.card-reclamação h1{
+	font-weight:bold;
+	font-size:0.6rem;
+	color:var(--header);
+	line-height:1rem;
+}
+.card-reclamação .assunto{
+	margin-bottom:10px;
+}
+.card-reclamação-comentarios{
+	padding: var(--padding);
+	margin-bottom:inherit;
+	box-shadow:inherit;
+}
+.card-reclamação-comentarios p,span{
+	color:var(--color-font-black);
+	font-size:0.6rem;
+}
+.card-reclamação-comentarios span{
+	line-height:2rem;
+}
+.linha{
+	border-bottom:1px solid #ededed;
+	margin-bottom:20px;
+	margin-top:10px;
+}
+.anexos{
+	margin-top:var(--margin-top-20px);
+}
+.anexos a{
+	align-items:center;
+	display:flex;
+	color:var(--header);
+}
+.card-bairro{
+	box-shadow:var(--box-sobra);
+	padding:var(--padding_2) var(--padding_2);
+}
+.card-bairro ul{
+	align-items:center;
+	display:flex;
+}
+.card-bairro li{
+	padding-right:20px;
+}
+.card-bairro h1{
+	align-items:center;
+	display:flex;
+}
+.card-bairro i{
+	font-size:1.5rem;
+	color:var(--header);
+}
+.card-bairro h1 a{
+	color:var(--header);
+	font-size:1rem;
+}
+.btn_comentarios{
+
+	margin-top:var(--margin-top-20px);
+	margin-bottom:var(--margin-top-20px);
+}
+.btn_comentarios a{
+	display:flex;
+	align-items:center;
+	color:var(--color-font-black);	
+}
+.btn_comentarios a i{
+	font-size:1rem;
+	color: var(--header);
+	padding-right:5px;
+}
+.fundo_login{
+	background: url(https://metronews.com.br/images/redacao/padrao/nibus-novo.jpg	)no-repeat center center fixed; ;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: var(--tamanho-geral-vh);
+}
+.login_form{
+	width:var(--tamanho-login-form-container);
+	background:var(--fundo-white-rgba);
+	height:var(--tamanho-geral-porcentagem-h);
+}
+.login_form{
+	padding:var(--padding_2) var(--padding_2);
+}
+.container_input input[type='submit']{
+	background:var(--header);
+	color:var(--color-font-white);
+	padding:var(--padding);	
+}
+.container_input input[type='submit']{
+	background:var(--header);
+	color:var(--color-font-white);
+	padding:var(--padding);	
+}
+.espaço{
+	padding:10px 0px;
+}
+.espaço{
+	padding:5px 0px;
+}
+.container{
+	display:flex;
+	flex-wrap: wrap;
+	align-items:center;
+	
+	justify-content:center;
+}
+.container div{
+	max-width:20rem;
+}
+.card-favoritos {
+	width:100%;
+	position:relative;
+	margin:10px 10px;
+}
+.card-favoritos-info{
+	position:absolute;
+	background:var(--header-rgba);
+	left:0;
+	right:0;
+	bottom:0;
+	padding:20px 20px;
+}
+.card-favoritos img{
+	width: 100%;
+}
+.card-favoritos-info  div ul{
+	display:flex;
+	align-items:center;
+	justify-content:space-around;
+}
+.card-favoritos-info ul li, .card-favoritos-info ul li a{
+	display:flex;
+	align-items:center;
+	color:var(--color-font-white);
+	font-size:0.8rem;
+}
+.card-favoritos-info ul li a i{
+	font-size:1.3rem;
+}
+.status_reclamação{
+	background:var(--header);
+	font-weight: bold;
+	padding:5px 5px;
+	margin-left:10px;
+	color:var(--color-font-white);
+}
+.espaco{
+	margin-top:20px;
+	margin-bottom:20px;
+}
+.espaco_central{
+	padding:5px 0px;
+}
+.cadastrar input{
+	width:100%;
+	border-radius:2px;
+	width:100%;
+	border:1px solid #dddd;
+	padding:0.4rem;
+	border-radius:4px;
+	height:37px;
+}
+@media screen and (min-width:720px){
+	.aside #aside{
+		width:var(--tamanho-aside);
+	}
+	.card-reclamação-comentarios p,span{
+		color:var(--color-font-black);
+		font-size:0.8rem;
+	}
+	.card-reclamação p{
+		font-size:0.8rem;
+	}
+	.card-reclamação h1{
+		font-size:1rem;
+		line-height:2rem;
+	}
+	.lista_de_horarios h1{
+		font-size:1rem;
+	}
+
+	.login_form{
+		width:var(--tamenho-login-form-container);
+		background:var(--color-font-white);
+		height:var(--tamanho-geral-porcentagem-h);
+	}
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head') %>
+<body>
+<main>
+  <section class="container_layout">
+    <%- include('../components/sidebar') %>
+    <div>
+      <%- include('../components/header') %>
+      <div class="tela">
+        <div class="titulo">
+             <h1><%=titulo_1%></h1>
+        </div>
+        <%for(var i = 0;i<bairros.length;i++){%>
+          <div class="card-bairro">
+             <h1><i class="material-icons">directions_bus</i><a href="/ponto/<%=bairros[i].id_bairro%>"><%=bairros[i].nome_bairro%> - (<%=bairros[i].nome_linha%>)
+                </a></h1>  
+            <div class="linha"></div>
+            <div>
+              <ul>
+                <li>
+                  Saida :<b> <%=bairros[i].saida_linha%></b>
+                </li>
+                <li>
+                  Retorno : <b><%=bairros[i].chegada_linha%></b>
+                </li>
+              </ul>
+            </div>
+          </div>
+        <%}%>
+      </div>
+    </div>
+  </section>
+</main>
+<%- include('../components/links') %>
+</html>

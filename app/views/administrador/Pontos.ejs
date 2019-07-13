@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head') %>
+<body>
+<main>
+  <section class="container_layout">
+    <%- include('../components/sidebar') %>
+    <div>
+      <%- include('../components/header') %>
+      <div class="tela">
+        <div class="card-bairro">
+                <form>
+                  <div class="container_input">
+                    <input type="text" id="pesquisa" placeholder="Procurar reclamaçoes especificas">
+                  </div>
+                </form>
+              </div>            <table>
+            <tr >
+              <th>Nome bairro</th>
+              <th>Nome linha</th>
+              <th>Nome Rua</th>
+            </tr>
+            <%for(var i = 0;i<pontos.length;i++){%>
+              <tr id="busca">
+                <td><%=pontos[i].nome_bairro%></td>
+                 <td><%=pontos[i].nome_linha%></td>
+                  <td><%=pontos[i].nome_rua%></td>
+              </tr>
+            <%}%>
+           </table> 
+      </div>
+    </div>
+  </section>
+</main> 
+<script type="text/javascript" src="js/pesquisa.js"></script>
+<%- include('../components/links') %>
+</html>

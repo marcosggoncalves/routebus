@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%- include('../components/head') %>
+</head>
+
+<body>
+	<main> 
+		<section class="container_layout">
+			<%- include('../components/sidebar') %>
+			<div>
+				<%- include('../components/header') %>
+				<div class="tela fundo">
+					<div class="titulo">
+						<h1>Registrar Via</h1>
+					</div>
+					<div class="msg">
+						<%if(msg.length >0){%>
+							<%for(var i = 0; i <msg.length;i++){%>
+								<div class="card-msg">
+									<span><i class="material-icons">check_circle</i><%=msg[i].msg%></span>
+								</div>
+							<%}%>
+						<%}%>
+					</div>
+					<div class="form_reclamação">
+						<form action="/cadastrar_via" method="post">
+							<div class="container_input">
+								<label>Via:</label>
+								<input type="text" name="nome_sentidovia">
+							</div>
+							<div class="btns_form">
+								<div>
+									<input type="submit" value="Salvar" >
+								</div>
+								<div>
+									<input type="reset" value="Limpar">
+								</div>
+							</div>
+						</form>
+						<div class="titulo">
+							<h1>Registrar Classificação Horários</h1>
+						</div>
+						<form action="/cadastrar_classifacao_horario" method="post">
+							<div class="container_input">
+								<label>Nome classificação:</label>
+								<input type="text" name="nome_classifcação">
+							</div>
+							<div class="btns_form">
+								<div>
+									<input type="submit" value="Salvar" >
+								</div>
+								<div>
+									<input type="reset" value="Limpar">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<%- include('../components/links') %>
+</body>
+</html>

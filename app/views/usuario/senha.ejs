@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<%- include('../components/head') %>
+<body>
+<main>
+	<section class="fundo_login">
+		<div class="login_form">
+			<div class="titulo">
+				<h1>Recupere sua senha !!!</h1>	
+			</div>
+			<form action="/senha"  method="POST" >
+				<div class="container_input">
+					<label>CPF:</label>
+					<input type="text" name="cpf_usuario">
+				</div>
+				<div class="espaco"></div>
+				<div class="container_input">
+					<input type="submit" value="Verificar">
+				</div>
+			</form>
+			<div class="espaço"></div>
+			<div class="msg">
+				<%if(msg.length > 0){%>
+					<%for(var a = 0; a <msg.length;a++){%>
+						<div class="card-msg">
+							<span><i class="material-icons">attachment</i><%=msg[a].msg%></span>
+						</div>
+					<%}%>
+				<%}%>
+			</div>
+		</div>
+	</section>
+</main>
+<%- include('../components/links') %>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<%- include('../components/head') %>
+<body>
+<main>
+	<section class="container_layout">
+		<%- include('../components/sidebar') %>
+		<div>
+			<%- include('../components/header') %>
+			<div class="tela fundo">
+				<div class="container-dados-pessoais">
+					<div>
+						<img src="<%=user[0].perfil_usuario%>">
+					</div>
+					<div>
+						<dl>
+							<dt>Usuário: <%=user[0].nome_usuario%></dt>
+							<dt>Email: <%=user[0].email_usuario%></dt>
+							<dt>Telefone: <%=user[0].telefone_usuario%></dt>
+							<dt>CPF: <%=user[0].cpf_usuario%></dt>
+						</dl>
+					</div>
+				</div>
+				<div class='alterar_dados'>
+					<div class="titulo">
+						<h1>Alterar dados cadastrais</h1>
+					</div>
+					<form action="/alterar/dados/pessoais" method="post">
+						<div class="container_input">
+							<label>Nome completo:</label>
+							<input type="text" name="nome_usuario" value="<%=user[0].nome_usuario%>">
+						</div>
+						<div class="container_input">
+							<label>E-mail:</label>
+							<input type="text" name="email_usuario" value="<%=user[0].email_usuario%>">
+						</div>
+						<div class="container_input">
+							<label>Senha:</label>
+							<input type="text" name="senha_usuario" value="<%=user[0].senha_usuario%>">
+						</div>
+						<div class="container_input">
+							<label>Telefone</label>
+							<input type="text" name="telefone_usuario" value="<%=user[0].telefone_usuario%>">
+						</div>
+						<div class="container_input">
+							<label>CPF</label>
+							<input type="text" name="cpf_usuario" value="<%=user[0].cpf_usuario%>">
+						</div>
+							<div class="btns_form">
+								<div>
+									<input type="submit" value="Alterar " >
+								</div>
+							</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
+<%- include('../components/links') %>
+</html>

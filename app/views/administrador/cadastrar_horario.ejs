@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%- include('../components/head') %>
+</head>
+
+<body>
+	<main> 
+		<section class="container_layout">
+			<%- include('../components/sidebar') %>
+			<div>
+				<%- include('../components/header') %>
+				<div class="tela fundo">
+					<div class="titulo">
+						<h1>Registrar Horário</h1>
+					</div>
+					<div class="msg">
+						<%if(msg.length >0){%>
+							<%for(var i = 0; i <msg.length;i++){%>
+								<div class="card-msg">
+									<span><i class="material-icons">check_circle</i><%=msg[i].msg%></span>
+								</div>
+							<%}%>
+						<%}%>
+					</div>
+					<div class="form_reclamação">
+						<form action="/cadastrar_horario" method="post">
+							<div class="container_input">
+								<label>Horário bairro</label>
+								<input type="time" name="horario_time">
+							</div>
+							<div class="container_input">
+								<label>Bairro</label>
+								<select name="id_bairro">
+									<option>Selecionar bairro..</option>
+									<%if(bairros.length>0){%>
+										<%for(var i = 0 ; i < bairros.length;i++){%>
+											<option value="<%=bairros[i].id_bairro%>"><%=bairros[i].nome_bairro%></option>
+										<%}%>
+									<%}%>
+								</select>
+							</div>
+							<div class="container_input">
+								<label>Inicio percurso:</label>
+								<input type="text" name="percurso_viagem">
+							</div>
+							<div class="container_input">
+								<label>Sentido/via</label>
+								<select name="id_sentido">
+									<option>Selecionar bairro..</option>
+									<%if(vias.length>0){%>
+										<%for(var p = 0 ; p < vias.length;p++){%>
+											<option value="<%=vias[p].id_sentidovia%>"><%=vias[p].nome_sentidovia%></option>
+										<%}%>
+									<%}%>
+								</select>
+							</div>
+							<div class="btns_form">
+								<div>
+									<input type="submit" value="Salvar" >
+								</div>
+								<div>
+									<input type="reset" value="Limpar">
+								</div>
+							</div>
+						</form>
+						<div class="titulo">
+							<h1>Registrar Classificação horário</h1>
+						</div>
+						<form action="/cadastrar_horario/classificacao" method="post">
+							<div class="container_input">
+								<label>Horário</label>
+								<select name="id_horario">
+									<option>Selecionar horário..</option>
+									<%if(horario.length>0){%>
+										<%for(var x = 0 ; x < horario.length;x++){%>
+											<option value="<%=horario[x].id_horario%>"><%=horario[x].horario_time%></option>
+										<%}%>
+									<%}%>
+								</select>
+							</div>
+							<div class="container_input">
+								<label>Classificação</label>
+								<select name="id_classificação">
+									<option>Selecionar bairro..</option>
+									<%if(classificação.length>0){%>
+										<%for(var z = 0 ; z < classificação.length;z++){%>
+											<option value="<%=classificação[z].id_classificação%>"><%=classificação[z].nome_classifcação%></option>
+										<%}%>
+									<%}%>
+								</select>
+							</div>
+							<div class="btns_form">
+								<div>
+									<input type="submit" value="Salvar" >
+								</div>
+								<div>
+									<input type="reset" value="Limpar">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<%- include('../components/links') %>
+</body>
+</html>

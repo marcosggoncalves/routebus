@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/head_linha') %>
+  <body>
+    <main>
+      <section class="container_layout">
+        <%- include('../components/sidebar') %>
+        <div>
+          <%- include('../components/header') %>
+          <div>
+            <div id="mapas"></div>
+          </div>
+          <div  class="lista_de_horarios">
+            <div class="info_dados">
+              <div class="btns_form">
+                <div>
+                  <button onclick="rota()">Rota próxima</button>
+                </div>
+                <div>
+                  <a href="/Salvar/favorito/<%=dados.id_bairro%>/1"><button>Favorito</button></a>
+                </div>
+              </div>
+              <div class="dados_rota">
+                <p id="dados"></p>
+              </div>
+            </div>
+            <div>
+              <div class="tela">
+                <div class="titulo_tela">
+                <h1>Horários (<%=dados.bairro%> - <%=dados.linha%> ) - <%=dados.horarios_corrido%></h1>
+                </div>
+                <div>
+                  <%for(var i = 0 ; i< horarios.length;i++){%>
+                  <div class="card-horario">
+                    <h1><%=horarios[i].nome_sentidovia%></h1>
+                    <div class="linha"></div>
+                      <ul>
+                        <%if(horarios[i].percurso_viagem == 'Bairro'){%>
+                           <li><b>Final:</b><%=horarios[i].saida_linha%> </li>
+                        <%}else{%>
+                          <li><b>Saida:</b> <%=horarios[i].percurso_viagem%></li>
+                        <%}%>
+                        <li><%=horarios[i].horario_time%></li>
+                      </ul>
+                  </div>
+                  <%}%>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF8QP6R3rJFZLZJcEsee3B3a1wz6Pul8E&callback=initMap" type="text/javascript"></script>
+  <%- include('../components/links') %>
+</html>
