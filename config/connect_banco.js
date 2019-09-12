@@ -7,7 +7,7 @@ const Conmysql = function() {
 		host:'localhost',
 		user:'root',
 		password:'',
-		database:'tcc'
+		database:'routebus'
 	});
 }
 

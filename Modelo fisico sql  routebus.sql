@@ -23,7 +23,7 @@ FOREIGN KEY(id_rua) REFERENCES Ruas (id_rua)
 CREATE TABLE usuarios (
 id_usuario integer PRIMARY KEY auto_increment,
 nome_usuario varchar(80),
-email_usuario varchar(20),
+email_usuario varchar(100),
 senha_usuario varchar(20),
 telefone_usuario char(11),
 cpf_usuario char(11),
