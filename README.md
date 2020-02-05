@@ -6,7 +6,7 @@ Muitos dos passageiros que usam ônibus como transporte público, tem muitas dif
 
 #### OBJETIVOS
 
-##OBJETIVO GERAL
+#### OBJETIVO GERAL
 O projeto propõe atender e facilitar as vidas das pessoas que utilizam o transporte público por meio de uma aplicação web.
 
 #### OBJETIVOS ESPECÍFICOS
