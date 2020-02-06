@@ -74,13 +74,9 @@ module.exports.autenticar = function(app,req,res){
 			if (results.length == 0) {
 				res.render('usuario/login',{titulo:'Acesse sua conta !!!',msg:[{msg:'Desculpe seu cadastro não foi encontrado !!!'}],dados:req.body});
 			}else{
-
 				req.session.user  =  results; 
 				req.session.autenticar = true;
 				req.session.nivel_acesso = results[0].nome_tipo_usuario;
-
-
-
 				res.redirect('/');	
 			};
 		};

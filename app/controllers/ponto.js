@@ -1,5 +1,4 @@
 module.exports.pontos = function(app,req,res) {
-
 	let variaveis_globais = {
 		id_bairro:req.params.id,
 		dados:'',
@@ -13,8 +12,6 @@ module.exports.pontos = function(app,req,res) {
 	let connection = app.config.connect_banco();
 	let pontos = new app.app.models.models(connection);
 
-
-
 	if(variaveis_globais.semana[variaveis_globais.date.getDay()-1] == variaveis_globais.semana[6]){
 		variaveis_globais.filter_time  = variaveis_globais.classifacao[2]; 
 	}else if(variaveis_globais.semana[variaveis_globais.date.getDay()-1] == variaveis_globais.semana[5]){
@@ -24,6 +21,11 @@ module.exports.pontos = function(app,req,res) {
 	}
 	if(req.session.user){
 		pontos.pontos(variaveis_globais.id_bairro,function(error,result){
+
+			if(result.length === 0){
+				res.redirect('/bairros');
+			}
+
 			result.forEach(function(pontos){
 				variaveis_globais.dados = {
 				   'id_bairro':pontos.id_bairro,
@@ -37,7 +39,6 @@ module.exports.pontos = function(app,req,res) {
 				}
 			})	
 		pontos.horarios(variaveis_globais.dados.id_bairro,variaveis_globais.filter_time,function(error,results){
-			console.log(results)
 			   res.render('usuario/linha',{
 			   	titulo:'Bairro: '+ variaveis_globais.dados.bairro,
 			   	pontos:result,

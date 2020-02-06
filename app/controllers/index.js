@@ -58,9 +58,12 @@ module.exports.senha_mudar = function(app,req,res){
 					var transporter = nodemailer.createTransport({
 					  service: 'gmail',
 					  auth: {
-					    user: 'marcoslopes5687@gmail.com',
-					    pass: '98343255'
-					  }
+					    user: 'marcoslopesg7@gmail.com',
+					    pass: ''
+					  },
+					  tls: {
+					        rejectUnauthorized: false
+					    }
 					});
 
 					var mailOptions = {
@@ -72,7 +75,8 @@ module.exports.senha_mudar = function(app,req,res){
 
 					transporter.sendMail(mailOptions, function(error, info){
 					  if (error) {
-					    console.log(error);
+					  	console.log(error)
+					    res.render('usuario/login',{titulo:'Acesse sua conta !!!',msg:[{msg:'Não foi possivel enviar recuperação de senha, tente novamente.'}],dados:[]});
 					  } else {
 					   res.render('usuario/login',{titulo:'Acesse sua conta !!!',msg:[{msg:'Verifique seu email '+dados.email_usuario+''}],dados:[]});
 					  }

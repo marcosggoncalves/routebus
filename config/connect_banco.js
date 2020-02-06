@@ -1,8 +1,6 @@
 const mysql = require('mysql');
 
 const Conmysql = function() {
-	console.log('Conexão banco de dados mysql');
-
 	return mysql.createConnection({
 		host:'localhost',
 		user:'root',
@@ -11,7 +9,6 @@ const Conmysql = function() {
 	});
 }
 
-module.exports = function(){
-	console.log('Conexão realizada com sucesso');
+module.exports = ()=>{
 	return Conmysql;
 }

@@ -10,8 +10,8 @@
 :root{
 	--color-font-white:#ffffff;
 	--color-font-black:#000000;
-	--tamanho-aside:24vw;
-	--tamanho-aside-mobile:80vw;
+	--tamanho-aside:20vw;
+	--tamanho-aside-mobile:60vw;
 	--tamanho-geral-vw:100vw;
 	--tamanho-geral-vh:100vh;
 	--tamanho-geral-porcentagem-w:100%;
@@ -81,9 +81,10 @@ p{
 .aside #aside nav ul li{
 	border-top: 1px solid #dedede;
 	padding:var(--padding);
+	margin-left: 12px;
 }
 .aside #aside nav ul li:hover{
-	border-left:5px solid var(--header);
+	border-left:4px solid var(--header);
 	background:#fcfcfc;
 	transition:0.5s;
 }
@@ -171,6 +172,10 @@ tr{
 .container-dados-pessoais div{
 	padding-right:20px;
 }
+.container-dados-pessoais dl dt{
+	font-weight: bold;
+	line-height: 1.6rem;	
+}
 .titulo{
 	border-left:4px solid var(--header);
 	padding:var(--padding);
@@ -184,6 +189,7 @@ tr{
 .tela{
 	height:100vh;
 	padding:var(--padding_2)var(--padding_2);
+	background: #FAFAFA;
 }
 .container_input{
 	display:flex;
@@ -191,7 +197,7 @@ tr{
 }
 
 label{
-	line-height:2rem;
+	line-height:2.5rem;
 }
 textarea{
 	height:20vh;
@@ -200,7 +206,7 @@ input,textarea,select{
 	background:none;
 	width:100%;
 	border:1px solid #cdcdcd;
-	padding:0.4rem;
+	padding:0.6rem;
 	border-radius:4px;
 
 }
@@ -233,11 +239,11 @@ input[type='file']{
 	padding-right:10px;
 }
 .btns_form input[type='submit'],[type='reset'],[type='button'],button{
-	width:100px;
+	width:120px;
 	height:34px;
 	border:none;
 	box-shadow:var(--box-sobra);
-	border-radius:inherit;
+	border-radius: 4px;
 }
 .btns_form button{
 	width:120px;
@@ -245,6 +251,8 @@ input[type='file']{
 	border:none;
 	box-shadow:var(--box-sobra_2);
 }
+.btns_form input[type='submit'],[type='button'],button{}
+
 .btns_form input[type='submit'],[type='button'],button{
 	background:var(--header);
 	color:var(--color-font-white);
@@ -348,8 +356,10 @@ input[type='file']{
 	color:var(--header);
 }
 .card-bairro{
-	box-shadow:var(--box-sobra);
+	box-shadow:1px 1px 1px 1px #dddddd;
 	padding:var(--padding_2) var(--padding_2);
+	margin-bottom: 10px;
+	background: #ffffff;
 }
 .card-bairro ul{
 	align-items:center;
