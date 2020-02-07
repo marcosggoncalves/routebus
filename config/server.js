@@ -5,8 +5,8 @@ const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const session = require('express-session');
 
-// app.listen(4040, ()=>{
-//   console.log("rodando na porta 3000.");
+// app.listen(4040, () => {
+// 	console.log("rodando na porta 3000.");
 // });
 
 app.listen(process.env.PORT_APP, () => {

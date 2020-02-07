@@ -7,6 +7,13 @@ const Conmysql = function () {
 		password: 'Lopes9951',
 		database: 'routebus'
 	});
+
+	// return mysql.createConnection({
+	// 	host: 'localhost',
+	// 	user: 'root',
+	// 	password: '',
+	// 	database: 'routebus'
+	// });
 }
 
 module.exports = () => {
