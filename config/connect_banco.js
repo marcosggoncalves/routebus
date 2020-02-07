@@ -1,14 +1,14 @@
 const mysql = require('mysql');
 
-const Conmysql = function() {
+const Conmysql = function () {
 	return mysql.createConnection({
-		host:'localhost',
-		user:'root',
-		password:'',
-		database:'routebus'
+		host: 'mysql.routebus.kinghost.net',
+		user: 'routebus_add1',
+		password: 'Lopes9951',
+		database: 'routebus'
 	});
 }
 
-module.exports = ()=>{
+module.exports = () => {
 	return Conmysql;
 }
