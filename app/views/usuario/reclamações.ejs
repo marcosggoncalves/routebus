@@ -44,7 +44,7 @@
 											<h1>Assunto - <%=reclamações[i].tipo_reclamção%>
 												<%if(reclamações[i].STATUS == 'Pendente'){%>
 													<%if(user[0].nome_tipo_usuario == 'Administrador'){%>
-														<a href="Reclamacao/status/<%=reclamações[i].id_reclamação%>/Resolvido" class="status_reclamação">Marca como resolvida</a>
+														<a href="Reclamacao/status/<%=reclamações[i].id_reclamacao%>/Resolvido" class="status_reclamação">Marca como resolvida</a>
 												<%}else{%>
 													 <span class="status_reclamação"><%=reclamações[i].STATUS%></span>
 												<%}%>
@@ -74,13 +74,13 @@
 										</div>
 									</div>
 									<div class="btn_comentarios">
-										<a href="/comentarios/<%=reclamações[i].STATUS%>/<%=reclamações[i].id_reclamação%>"><i class="material-icons">comment</i>Comentarios <%if(comentarios.length>0){%>
+										<a href="/comentarios/<%=reclamações[i].STATUS%>/<%=reclamações[i].id_reclamacao%>"><i class="material-icons">comment</i>Comentarios <%if(comentarios.length>0){%>
 														(<%=comentarios.length%>)<%}else{%><%}%></a>
 									</div>
 								</div>
 								<%if(reclamações[i].STATUS == 'Pendente'){%>
 								<div class="card-comentar">
-									<form action="/comentar/<%=reclamações[i].STATUS%>/<%=reclamações[i].id_reclamação%>" method="post">
+									<form action="/comentar/<%=reclamações[i].STATUS%>/<%=reclamações[i].id_reclamacao%>" method="post">
 										<div class="container_input">
 											<input type="text" name="comentario" placeholder="Digite seu comentário.">
 										</div>

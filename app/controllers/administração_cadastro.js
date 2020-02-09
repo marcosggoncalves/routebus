@@ -58,7 +58,7 @@ module.exports.cadastros_horario = function(app,req,res){
 	let pontos = new app.app.models.models(connection);
 
 	if(req.session.autenticar){
-		pontos.classificação_horario(function(error,result3){
+		pontos.classificacao_horario(function(error,result3){
 			pontos.horario(function(error,result2){
 				pontos.bairros(function(error,result){
 					pontos.vias(function(error,results){
@@ -89,7 +89,7 @@ module.exports.cadastros_horario_salvar = function(app,req,res){
 	var erros = req.validationErrors();
 
 	if(erros){
-		pontos.classificação_horario(function(error,result3){
+		pontos.classificacao_horario(function(error,result3){
 			pontos.horario(function(error,result2){
 				pontos.bairros(function(error,result){
 					pontos.vias(function(error,results){
@@ -112,7 +112,7 @@ module.exports.cadastros_horario_salvar = function(app,req,res){
 		if(error){
 			console.log(error);
 		}else{
-			pontos.classificação_horario(function(error,result3){
+			pontos.classificacao_horario(function(error,result3){
 				pontos.horario(function(error,result2){
 					pontos.bairros(function(error,result){
 						pontos.vias(function(error,results){
@@ -133,15 +133,15 @@ module.exports.cadastros_horario_salvar = function(app,req,res){
 	});
 }
 
-module.exports.classificação_horario = function(app,req,res){
+module.exports.classificacao_horario = function(app,req,res){
 	let connection = app.config.connect_banco();
 	let pontos = new app.app.models.models(connection);
 
-	pontos.insert_classificação_horario(req.body,function(error,result){
+	pontos.insert_classificacao_horario(req.body,function(error,result){
 		if(error){
 			console.log(error);
 		}else{
-			pontos.classificação_horario(function(error,result3){
+			pontos.classificacao_horario(function(error,result3){
 				pontos.horario(function(error,result2){
 					pontos.bairros(function(error,result){
 						pontos.vias(function(error,results){

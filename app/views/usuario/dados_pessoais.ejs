@@ -25,6 +25,15 @@
 					<div class="titulo">
 						<h1>Alterar dados cadastrais</h1>
 					</div>
+					<div class="msg">
+						<%if(msg.length >0){%>
+							<%for(var i = 0; i <msg.length;i++){%>
+								<div class="card-msg">
+									<span><i class="material-icons">check_circle</i><%=msg[i].msg%></span>
+								</div>
+							<%}%>
+						<%}%>
+					</div>
 					<form action="/alterar/dados/pessoais" method="post">
 						<div class="container_input">
 							<label>Nome completo:</label>
@@ -36,7 +45,7 @@
 						</div>
 						<div class="container_input">
 							<label>Senha:</label>
-							<input type="text" name="senha_usuario" value="<%=user[0].senha_usuario%>">
+							<input type="password" name="senha_usuario">
 						</div>
 						<div class="container_input">
 							<label>Telefone</label>

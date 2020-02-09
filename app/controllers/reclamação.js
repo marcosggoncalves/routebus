@@ -5,7 +5,7 @@
 		res.redirect('/login');
 	}
 }
-module.exports.salvar_reclamação = function(app,req,res){
+module.exports.salvar_reclamacao = function(app,req,res){
 	var connection = app.config.connect_banco(),dados,img_nome;
 	var pontos = new app.app.models.models(connection);
 	
@@ -30,10 +30,10 @@ module.exports.salvar_reclamação = function(app,req,res){
 	}else{
 		img_nome = 'uploads/'+req.file.originalname;
 	}
-	pontos.salvar_reclamação(dados = {
-		'data_de_reclamação': req.body.data_de_reclamação,
-		'desc_reclamação': req.body.desc_reclamação,
-		'tipo_reclamção': req.body.tipo_reclamção,
+	pontos.salvar_reclamacao(dados = {
+		'data_de_reclamacao': req.body.data_de_reclamação,
+		'desc_reclamacao': req.body.desc_reclamação,
+		'tipo_reclamacao': req.body.tipo_reclamção,
 		'anexo_arquivo':img_nome,
 		id_usuario: req.session.user[0].id_usuario,
 		'STATUS':'Pendente'
@@ -50,7 +50,7 @@ module.exports.todas_reclamações = function(app,req,res){
 	var pontos = new app.app.models.models(connection);
 	
 	if(req.session.autenticar){
-		pontos.reclamações_usuario(req.session.user[0].id_usuario,req.params.busca,function(error,result){
+		pontos.reclamacoes_usuario(req.session.user[0].id_usuario,req.params.busca,function(error,result){
 			if (result.length > 0) {
 				res.render('usuario/reclamações',{
 					titulo:'Transporte público de Dourados-MS',
@@ -75,7 +75,7 @@ module.exports.todas_reclamações = function(app,req,res){
 			
 		});
 	}else{
-		res.redirect('/login');
+		res.redirect('/');
 	}
 };
 module.exports.todos_comentarios = function(app,req,res,io){
@@ -84,8 +84,8 @@ module.exports.todos_comentarios = function(app,req,res,io){
 
 
 	if(req.session.autenticar){
-		pontos.reclamações_usuario(req.session.user[0].id_usuario,req.params.busca,function(error,results){
-			pontos.reclamações_comentarios(req.params.id,function(error,result){
+		pontos.reclamacoes_usuario(req.session.user[0].id_usuario,req.params.busca,function(error,results){
+			pontos.reclamacoes_comentarios(req.params.id,function(error,result){
 					if(result.length <= 0){
 						res.render('usuario/reclamações',{
 								titulo:'Transporte público de Dourados-MS',
@@ -120,11 +120,12 @@ module.exports.todos_comentarios = function(app,req,res,io){
 module.exports.new_comentar = function(app,req,res){
 	var connection = app.config.connect_banco(),dados;
 	var pontos = new app.app.models.models(connection);
+	var date = new Date();
 
-	pontos.new_comentar_reclamação(dados = {
+	pontos.new_comentar_reclamacao(dados = {
 		'comentario':req.body.comentario,
-		'data_comentario':new Date(),
-		'id_reclamação':req.params.id,
+		'data_comentario':date.toLocaleDateString() +' às '+ date.toLocaleTimeString(),
+		'id_reclamacao':req.params.id,
 		'id_usuario': req.session.user[0].id_usuario
 	},function(error,result){
 		if(error){
@@ -141,7 +142,7 @@ module.exports.todas_reclamações_adminstrador_status = function(app,req,res){
 
 	if(req.session.autenticar){
 		if(req.session.nivel_acesso == 'Administrador'){
-			pontos.reclamações_status(req.params.busca,function(error,result){
+			pontos.reclamacoes_status(req.params.busca,function(error,result){
 				if (result.length > 0) {
 					res.render('usuario/reclamações',{
 						titulo:'Transporte público de Dourados-MS',
@@ -179,7 +180,7 @@ module.exports.todas_reclamações_adminstrador = function(app,req,res){
 
 	if(req.session.autenticar){
 		if(req.session.nivel_acesso == 'Administrador'){
-			pontos.reclamações(function(error,result){
+			pontos.reclamacoes(function(error,result){
 				if (result.length > 0) {
 					res.render('usuario/reclamações',{
 						titulo:'Transporte público de Dourados-MS',
@@ -229,7 +230,7 @@ module.exports.buscar_usuario_reclamacao = function(app,req,res){
 
 	if(req.session.autenticar){
 		if(req.session.nivel_acesso == 'Administrador'){
-			pontos.reclamações_usuario_especifico(req.params.id_usuario,function(error,result){
+			pontos.reclamacoes_usuario_especifico(req.params.id_usuario,function(error,result){
 				if (result.length > 0) {
 					res.render('usuario/reclamações',{
 						titulo:'Transporte público de Dourados-MS',

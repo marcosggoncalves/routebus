@@ -39,7 +39,7 @@ module.exports = function(app) {
 		app.app.controllers.administração_cadastro.cadastros_horario_salvar(app,req,res);
 	})
 	app.post('/cadastrar_horario/classificacao',function(req,res){
-		app.app.controllers.administração_cadastro.classificação_horario(app,req,res);
+		app.app.controllers.administração_cadastro.classificacao_horario(app,req,res);
 	})
 
 

@@ -1,5 +1,5 @@
 
-CREATE TABLE Ruas (
+CREATE TABLE ruas (
 id_rua integer PRIMARY KEY auto_increment,
 nome_rua varchar(80)
 );
@@ -17,7 +17,7 @@ lat_ponto varchar(20),
 lng_ponto varchar(20),
 id_bairro integer,
 id_rua integer,
-FOREIGN KEY(id_rua) REFERENCES Ruas (id_rua)
+FOREIGN KEY(id_rua) REFERENCES ruas (id_rua)
 );
 
 CREATE TABLE usuarios (
@@ -40,18 +40,18 @@ id_linha integer,
 FOREIGN KEY(id_linha) REFERENCES linha (id_linha)
 );
 
-CREATE TABLE Tipo_de_usuario (
+CREATE TABLE tipo_de_usuario (
 id_tipo_usuario integer PRIMARY KEY auto_increment,
 nome_tipo_usuario varchar(80),
 nivel_de_acesso integer
 );
 
-CREATE TABLE reclamações (
-id_reclamação integer PRIMARY KEY auto_increment,
-desc_reclamação text,
-tipo_reclamção varchar(100),
+CREATE TABLE reclamacoes (
+id_reclamacao integer PRIMARY KEY auto_increment,
+desc_reclamacao text,
+tipo_reclamacao varchar(100),
 anexo_arquivo text,
-data_de_reclamação varchar(80),
+data_de_reclamacao varchar(80),
 STATUS varchar(80),
 id_usuario integer,
 FOREIGN KEY(id_usuario) REFERENCES usuarios (id_usuario)
@@ -62,9 +62,9 @@ id_comentario integer PRIMARY KEY auto_increment,
 comentario text,
 data_comentario varchar(80),
 id_usuario integer,
-id_reclamação integer,
+id_reclamacao integer,
 FOREIGN KEY(id_usuario) REFERENCES usuarios (id_usuario),
-FOREIGN KEY(id_reclamação) REFERENCES reclamações (id_reclamação)
+FOREIGN KEY(id_reclamacao) REFERENCES reclamacoes (id_reclamacao)
 );
 
 CREATE TABLE favoritos (
@@ -76,14 +76,14 @@ FOREIGN KEY(id_usuario) REFERENCES usuarios (id_usuario),
 FOREIGN KEY(id_bairro) REFERENCES bairros (id_bairro)
 );
 
-CREATE TABLE Sentidovia (
+CREATE TABLE sentidovia (
 id_sentidovia integer PRIMARY KEY auto_increment,
 nome_sentidovia varchar(100)
 );
 
-CREATE TABLE classificação (
-id_classificação integer PRIMARY KEY auto_increment,
-nome_classifcação varchar(100)
+CREATE TABLE classificacao (
+id_classificacao integer PRIMARY KEY auto_increment,
+nome_classifcacao varchar(100)
 );
 
 CREATE TABLE horario (
@@ -91,17 +91,17 @@ id_horario integer PRIMARY KEY auto_increment,
 horario_time time,
 id_bairro integer,
 id_sentido integer,
-FOREIGN KEY(id_sentido) REFERENCES Sentidovia(id_sentidovia),
+FOREIGN KEY(id_sentido) REFERENCES sentidovia(id_sentidovia),
 FOREIGN KEY(id_bairro) REFERENCES bairros (id_bairro)
 );
 
-CREATE TABLE classificação_horario (
-id_classificação_horario integer PRIMARY KEY auto_increment,
+CREATE TABLE classificacao_horario (
+id_classificacao_horario integer PRIMARY KEY auto_increment,
 id_horario integer,
-id_classificação integer,
+id_classificacao integer,
 FOREIGN KEY(id_horario) REFERENCES horario (id_horario),
-FOREIGN KEY(id_classificação) REFERENCES classificação (id_classificação)
+FOREIGN KEY(id_classificacao) REFERENCES classificacao (id_classificacao)
 );
 
 ALTER TABLE pontos ADD FOREIGN KEY(id_bairro) REFERENCES bairros (id_bairro);
-ALTER TABLE usuarios ADD FOREIGN KEY(id_tipo_usuario) REFERENCES Tipo_de_usuario (id_tipo_usuario);
+ALTER TABLE usuarios ADD FOREIGN KEY(id_tipo_usuario) REFERENCES tipo_de_usuario (id_tipo_usuario);

@@ -17,7 +17,7 @@ module.exports.index = function (app, req, res) {
 
 module.exports.dados_pessoais = function (app, req, res) {
 	if (req.session.autenticar) {
-		res.render('usuario/dados_pessoais', { titulo: 'Transporte público de Dourados-MS', user: req.session.user });
+		res.render('usuario/dados_pessoais', { titulo: 'Transporte público de Dourados-MS', user: req.session.user, msg:[] });
 	} else {
 		res.redirect('/');
 	}
@@ -26,12 +26,38 @@ module.exports.dados_pessoais = function (app, req, res) {
 module.exports.update_dados_pessoais = function (app, req, res) {
 	let connection = app.config.connect_banco();
 	let pontos = new app.app.models.models(connection);
+
+
+
+	req.assert('nome_usuario','Por favor, informe  nome completo !!! ').notEmpty();
+	req.assert('email_usuario','Por favor,  informe seu email !!!').notEmpty();
+	req.assert('senha_usuario','Por favor, informe uma senha !!!').notEmpty();
+
+	req.assert('telefone_usuario','Por favor, informe seu telefone!!! ').notEmpty();
+	req.assert('cpf_usuario','Por favor, informe seu CPF !!!').notEmpty();
+
+	var erros = req.validationErrors();
+
+
+	if (erros) {
+		res.render('usuario/dados_pessoais',{
+			titulo:'Dados pessoais | Routebus',
+			msg:erros,
+			user: req.session.user
+		});
+		return;
+	}	
+
 	if (req.session.autenticar) {
 		pontos.update_dados_usuario(req.body, req.session.user[0].id_usuario, function (error, result) {
 			if (error) {
 				console.log(error);
 			} else {
-				res.redirect('/');
+				res.render('usuario/dados_pessoais', { 
+					titulo: 'Transporte público de Dourados-MS', 
+					user: req.session.user,
+					msg: [{ msg: 'Informações foram alteradas com sucesso !!!' }] 
+				});
 			}
 		});
 	} else {
@@ -75,7 +101,6 @@ module.exports.senha_mudar = function (app, req, res) {
 
 					transporter.sendMail(mailOptions, function (error, info) {
 						if (error) {
-							console.log(error)
 							res.render('usuario/login', { titulo: 'Acesse sua conta !!!', msg: [{ msg: 'Não foi possivel enviar recuperação de senha, tente novamente.' }], dados: [] });
 						} else {
 							res.render('usuario/login', { titulo: 'Acesse sua conta !!!', msg: [{ msg: 'Verifique seu email ' + dados.email_usuario + '' }], dados: [] });

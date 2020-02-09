@@ -8,8 +8,8 @@ class models {
 	horario(callback){
 		this.connection.query('select*from horario',callback);
 	}
-	classificação_horario(callback){
-		this.connection.query('select * from classificação',callback);
+	classificacao_horario(callback){
+		this.connection.query('select * from classificacao',callback);
 	}
 	vias(callback){
 		this.connection.query('select*from sentidovia', callback);
@@ -24,10 +24,10 @@ class models {
 		this.connection.query('select*from usuarios',callback);
 	}
 	horarios(id_bairro,filter_time,callback){
-		this.connection.query('SELECT * FROM horario,linha,bairros,sentidovia,classificação,classificação_horario where horario.id_sentido = sentidovia.id_sentidovia and horario.id_bairro = bairros.id_bairro and bairros.id_linha = linha.id_linha and classificação_horario.id_horario = horario.id_horario and classificação_horario.id_classificação = classificação.id_classificação and bairros.id_bairro =?  and  classificação.nome_classifcação ="'+filter_time+'" ',id_bairro,callback);
+		this.connection.query('SELECT * FROM horario,linha,bairros,sentidovia,classificacao,classificacao_horario where horario.id_sentido = sentidovia.id_sentidovia and horario.id_bairro = bairros.id_bairro and bairros.id_linha = linha.id_linha and classificacao_horario.id_horario = horario.id_horario and classificacao_horario.id_classificacao = classificacao.id_classificacao and bairros.id_bairro =?  and  classificacao.nome_classifcacao ="'+filter_time+'" ',id_bairro,callback);
 	}
 	horarios_bairro(id_bairro,callback){
-		this.connection.query('SELECT * FROM horario,linha,bairros,sentidovia,classificação,classificação_horario where horario.id_sentido = sentidovia.id_sentidovia and horario.id_bairro = bairros.id_bairro and bairros.id_linha = linha.id_linha and classificação_horario.id_horario = horario.id_horario and classificação_horario.id_classificação = classificação.id_classificação and bairros.id_bairro =? ',id_bairro,callback)
+		this.connection.query('SELECT * FROM horario,linha,bairros,sentidovia,classificacao,classificacao_horario where horario.id_sentido = sentidovia.id_sentidovia and horario.id_bairro = bairros.id_bairro and bairros.id_linha = linha.id_linha and classificacao_horario.id_horario = horario.id_horario and classificacao_horario.id_classificacao = classificacao.id_classificacao and bairros.id_bairro =? ',id_bairro,callback)
 	}
 	pontos(id_bairro,callback){
 		this.connection.query('select*from bairros,linha,pontos,ruas where  bairros.id_linha = linha.id_linha and pontos.id_bairro = bairros.id_bairro and pontos.id_rua = ruas.id_rua and bairros.id_bairro="'+id_bairro+'" ',callback);
@@ -35,25 +35,25 @@ class models {
 	pontos_todos(callback){
 		this.connection.query('select*from bairros,linha,pontos,ruas where  bairros.id_linha = linha.id_linha and pontos.id_bairro = bairros.id_bairro and pontos.id_rua = ruas.id_rua',callback);
 	}
-	salvar_reclamação(dados,callback){
-		this.connection.query('insert into reclamações set ?',dados,callback);
+	salvar_reclamacao(dados,callback){
+		this.connection.query('insert into reclamacoes set ?',dados,callback);
 	}
-	reclamações_usuario(id_usuario,busca,callback){
-		this.connection.query('select*from reclamações,usuarios where reclamações.id_usuario = usuarios.id_usuario and usuarios.id_usuario="'+id_usuario+'" and reclamações.STATUS = "'+busca+'" order by id_reclamação desc limit 3',callback);
+	reclamacoes_usuario(id_usuario,busca,callback){
+		this.connection.query('select*from reclamacoes,usuarios where reclamacoes.id_usuario = usuarios.id_usuario and usuarios.id_usuario="'+id_usuario+'" and reclamacoes.STATUS = "'+busca+'" order by id_reclamacao desc limit 3',callback);
 	}
-	reclamações_usuario_especifico(id_usuario,callback){
-		this.connection.query('select*from reclamações,usuarios where reclamações.id_usuario = usuarios.id_usuario and usuarios.id_usuario=?',id_usuario,callback);
+	reclamacoes_usuario_especifico(id_usuario,callback){
+		this.connection.query('select*from reclamacoes,usuarios where reclamacoes.id_usuario = usuarios.id_usuario and usuarios.id_usuario=?',id_usuario,callback);
 	}
-	reclamações_status(busca,callback){
-		this.connection.query('select*from reclamações,usuarios where reclamações.id_usuario = usuarios.id_usuario  and reclamações.STATUS = "'+busca+'" order by id_reclamação desc ',callback);
+	reclamacoes_status(busca,callback){
+		this.connection.query('select*from reclamacoes,usuarios where reclamacoes.id_usuario = usuarios.id_usuario  and reclamacoes.STATUS = "'+busca+'" order by id_reclamacao desc ',callback);
 	}
-	reclamações(callback){
-		this.connection.query('select*from reclamações,usuarios where reclamações.id_usuario = usuarios.id_usuario  order by id_reclamação desc ',callback);
+	reclamacoes(callback){
+		this.connection.query('select*from reclamacoes,usuarios where reclamacoes.id_usuario = usuarios.id_usuario  order by id_reclamacao desc ',callback);
 	}
-	reclamações_comentarios(id_reclamação,callback){
-		this.connection.query('select*from reclamações,comentario,usuarios where comentario.id_reclamação = reclamações.id_reclamação and comentario.id_usuario = usuarios.id_usuario and comentario.id_reclamação = ? order by reclamações.id_reclamação desc ',id_reclamação,callback);
+	reclamacoes_comentarios(id_reclamacao,callback){
+		this.connection.query('select*from reclamacoes,comentario,usuarios where comentario.id_reclamacao = reclamacoes.id_reclamacao and comentario.id_usuario = usuarios.id_usuario and comentario.id_reclamacao = ? order by reclamacoes.id_reclamacao desc ',id_reclamacao,callback);
 	}
-	new_comentar_reclamação(comentario,callback){
+	new_comentar_reclamacao(comentario,callback){
 		this.connection.query('insert into comentario set ?',comentario,callback);
 	}
 	new_favoritos(favorito,callback){
@@ -71,8 +71,8 @@ class models {
 	update_dados_usuario(usuario,id_usuario,callback){
 		this.connection.query('update usuarios set nome_usuario = "'+usuario.nome_usuario+'",email_usuario="'+usuario.email_usuario+'",senha_usuario="'+usuario.senha_usuario+'",telefone_usuario="'+usuario.telefone_usuario+'",cpf_usuario="'+usuario.cpf_usuario+'" where  id_usuario ="'+id_usuario+'"',callback);
 	}
-	status_update(id_reclamação,status,callback){
-		this.connection.query('update reclamações set STATUS ="'+status+'" where id_reclamação =?',id_reclamação,callback);
+	status_update(id_reclamacao,status,callback){
+		this.connection.query('update reclamacoes set STATUS ="'+status+'" where id_reclamacao =?',id_reclamacao,callback);
 	}
 	insert_bairro(bairros,callback){
 		this.connection.query('insert into bairros set ?',bairros,callback);
@@ -92,14 +92,14 @@ class models {
 	insert_via(via,callback){
 		this.connection.query('insert into sentidovia set ?',via,callback);
 	}
-	insert_classificação(classificação,callback){
-		this.connection.query('insert into classificação set ?',classificação,callback);
+	insert_classificacao(classificacao,callback){
+		this.connection.query('insert into classificacao set ?',classificacao,callback);
 	}
 	insert_horario(horario,callback){
 		this.connection.query('insert into horario set ?',horario,callback);
 	}
-	insert_classificação_horario(classificação_horario,callback){
-		this.connection.query('insert into classificação_horario set ?',classificação_horario,callback);
+	insert_classificacao_horario(classificacao_horario,callback){
+		this.connection.query('insert into classificacao_horario set ?',classificacao_horario,callback);
 	}
 }
 
