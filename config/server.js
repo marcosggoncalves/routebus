@@ -5,13 +5,13 @@ const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const session = require('express-session');
 
-app.listen(2020, () => {
+/*app.listen(2020, () => {
  	console.log("rodando na porta 3000.");
-});
-
-/*app.listen(process.env.PORT_APP, () => {
-	console.log('Servidor inicializado na porta:' + process.env.PORT_APP);
 });*/
+
+app.listen(process.env.PORT_APP, () => {
+	console.log('Servidor inicializado na porta:' + process.env.PORT_APP);
+});
 
 
 app.set('views', './app/views');
