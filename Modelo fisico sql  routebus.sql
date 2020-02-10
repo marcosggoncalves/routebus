@@ -90,6 +90,7 @@ CREATE TABLE horario (
 id_horario integer PRIMARY KEY auto_increment,
 horario_time time,
 id_bairro integer,
+percurso_viagem varchar(255),
 id_sentido integer,
 FOREIGN KEY(id_sentido) REFERENCES sentidovia(id_sentidovia),
 FOREIGN KEY(id_bairro) REFERENCES bairros (id_bairro)

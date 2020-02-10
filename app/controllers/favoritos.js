@@ -1,13 +1,11 @@
 module.exports.salvar = function(app,req,res) {
 
-	let connection = app.config.connect_banco(),dados,now;
+	let connection = app.config.connect_banco(),dados;
 	let ponto = new app.app.models.models(connection);
-	let dateFormat = require('dateformat');
-
-	now = new Date();
+	let date = new Date();
 
 	ponto.new_favoritos(dados={
-		'data_salvo':dateFormat(now, "isoDateTime"),
+		'data_salvo':date.toLocaleDateString() +' às '+ date.toLocaleTimeString(),
 		'id_usuario':req.params.id_usuario,
 		'id_bairro':req.params.id_bairro
 	},function(error,result){

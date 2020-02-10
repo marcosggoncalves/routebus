@@ -28,7 +28,6 @@ class Distancias{
 	comparar_distancias(ponto){
 		var cont = 0 ;
 		if(this.DistanciaFinal() <0.5){
-			console.log(cont++)
 			this.pontos_proximos.push(ponto);
 			localStorage.setItem('pontos_proximos',JSON.stringify(this.pontos_proximos));
 		}else{
@@ -47,7 +46,6 @@ class Distancias{
 				}	
 			}
 		}
-		console.log(this.pontos_proximos);
 		localStorage.setItem('pontos_proximos',JSON.stringify(this.pontos_proximos));
 	}
 }
@@ -57,15 +55,14 @@ function rota() {
 	    map: map
 	  });
 
-	  	console.log(distance.pontos_proximos[0])
-
 	  var request = {
 	    destination: distance.pontos_proximos[0],
 	    origin: {
 	      lat: posi.lat,
 	      lng: posi.lng
 	    },
-	    travelMode: 'WALKING'
+		travelMode: 'WALKING',
+		icon: 'img/ponto.png'
 	  };
 
 	  CalculaDistancia(request.destination, request.origin)
@@ -80,7 +77,7 @@ function rota() {
 	  function CalculaDistancia(origem, destino) {
 	    var service = new google.maps.DistanceMatrixService();
 	    service.getDistanceMatrix({
-	      origins: [origem],
+		  origins: [origem],
 	      destinations: [destino],
 	      travelMode: google.maps.TravelMode.DRIVING
 	    }, callback);
