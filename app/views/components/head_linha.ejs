@@ -17,40 +17,39 @@
 		 mapTypeId: google.maps.MapTypeId.ROADMAP
 	  };
 	  map = new google.maps.Map(document.getElementById("mapas"), mapProp);
+	  navigator.geolocation.getCurrentPosition(function(position) {
+		<%pontos.forEach(function(dados_bairros){%>
+				posi = {
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
+				};
+				distance = new Distancias(posi.lat, posi.lng, <%=dados_bairros.lat_ponto%>, <%=dados_bairros.lng_ponto%>);
 
-	  <%pontos.forEach(function(dados_bairros){%>
-	 	 navigator.geolocation.getCurrentPosition(function(position) {
-			posi = {
-				lat: position.coords.latitude,
-				lng: position.coords.longitude
-			};
-			distance = new Distancias(posi.lat, posi.lng, <%=dados_bairros.lat_ponto%>, <%=dados_bairros.lng_ponto%>);
+				distance.comparar_distancias({
+					lat: <%=dados_bairros.lat_ponto%>,
+					lng: <%=dados_bairros.lng_ponto%>,
+					distancia:distance.DistanciaFinal().toFixed(2)
+				});
+				distance.ordenar_distancias();
 
-			distance.comparar_distancias({
-				lat: <%=dados_bairros.lat_ponto%>,
-				lng: <%=dados_bairros.lng_ponto%>,
-				distancia:distance.DistanciaFinal().toFixed(2)
-			});
-			distance.ordenar_distancias();
+				latLng = new google.maps.LatLng(<%=dados_bairros.lat_ponto%>, <%=dados_bairros.lng_ponto%>);
 
-			latLng = new google.maps.LatLng(<%=dados_bairros.lat_ponto%>, <%=dados_bairros.lng_ponto%>);
+				var marker = new google.maps.Marker({
+					map: map,
+					position: latLng,
+					animation: google.maps.Animation.DROP,
+					icon: 'img/ponto.png'
+				})
 
-			var marker = new google.maps.Marker({
-				map: map,
-				position: latLng,
-				animation: google.maps.Animation.DROP,
-				icon: 'img/ponto.png'
-			})
+				var infowindow = new google.maps.InfoWindow({
+					content: 'Bairro Selecionado'
+				});
 
-			var infowindow = new google.maps.InfoWindow({
-				content: 'Bairro Selecionado'
-			});
-
-			marker.addListener('click', function() {
-				infowindow.open(map, marker);
-			});
-	  	});
-	  <%})%>
+				marker.addListener('click', function() {
+					infowindow.open(map, marker);
+				});
+		<%})%>
+		});
 	}
   </script>
 </head>
