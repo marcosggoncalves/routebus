@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const session = require('express-session');
 
-/*app.listen(2020, () => {
+/*wapp.listen(2020, () => {
  	console.log("rodando na porta 3000.");
 });*/
 
