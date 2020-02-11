@@ -9,8 +9,8 @@ const session = require('express-session');
 // 	console.log("rodando na porta 3000.");
 // });
 
-app.listen(process.env.PORT, () => {
-	console.log('Servidor inicializado na porta:' + process.env.PORT);
+app.listen(process.env.PORT_APP, () => {
+	console.log('Servidor inicializado na porta:' + process.env.PORT_APP);
 });
 
 app.set('views', './app/views');
@@ -29,9 +29,9 @@ app.use(session({
 }));
 
 consign()
-	.include('app/routes/index.js')
-	.then('app/models/models.js')
-	.then('app/controllers/index.js')
+	.include('app/models')
+	.then('app/controllers')
+	.then('app/routes')
 	.then('config/connect_banco.js')
 	.into(app);
 
