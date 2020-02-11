@@ -28,6 +28,8 @@ app.use(session({
 	saveUninitialized: false
 }));
 
+consign({ cwd: process.cwd() + "/app" });
+
 consign()
 	.include('app/routes')
 	.then('app/models')
