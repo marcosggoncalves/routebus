@@ -29,10 +29,10 @@ app.use(session({
 }));
 
 consign()
-	.include(process.cwd() + '/app/routes')
-	.then(process.cwd() + 'app/models')
-	.then(process.cwd() + 'app/controllers')
-	.then(process.cwd() + 'config/connect_banco.js')
+	.include(process.cwd() + '/routes')
+	.then(process.cwd() + '/models')
+	.then(process.cwd() + '/controllers')
+	.then(process.cwd() + '../config/connect_banco.js')
 	.into(app);
 
 module.exports = { app };
