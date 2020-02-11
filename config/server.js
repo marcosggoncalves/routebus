@@ -28,7 +28,7 @@ app.use(session({
 	saveUninitialized: false
 }));
 
-consign()
+consign({ cwd: process.cwd() })
 	.include('routes')
 	.then('models')
 	.then('controllers')
