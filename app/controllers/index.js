@@ -1,6 +1,6 @@
 module.exports.index = function (app, req, res) {
 	let connection = app.config.connect_banco();
-	let pontos = new app.app.models.models(connection);
+	let pontos = new app.models.models(connection);
 
 	pontos.bairros(function (error, result) {
 		if (req.session.autenticar) {
@@ -17,7 +17,7 @@ module.exports.index = function (app, req, res) {
 
 module.exports.dados_pessoais = function (app, req, res) {
 	if (req.session.autenticar) {
-		res.render('usuario/dados_pessoais', { titulo: 'Transporte público de Dourados-MS', user: req.session.user, msg:[] });
+		res.render('usuario/dados_pessoais', { titulo: 'Transporte público de Dourados-MS', user: req.session.user, msg: [] });
 	} else {
 		res.redirect('/');
 	}
@@ -25,38 +25,38 @@ module.exports.dados_pessoais = function (app, req, res) {
 
 module.exports.update_dados_pessoais = function (app, req, res) {
 	let connection = app.config.connect_banco();
-	let pontos = new app.app.models.models(connection);
+	let pontos = new app.models.models(connection);
 
 
 
-	req.assert('nome_usuario','Por favor, informe  nome completo !!! ').notEmpty();
-	req.assert('email_usuario','Por favor,  informe seu email !!!').notEmpty();
-	req.assert('senha_usuario','Por favor, informe uma senha !!!').notEmpty();
+	req.assert('nome_usuario', 'Por favor, informe  nome completo !!! ').notEmpty();
+	req.assert('email_usuario', 'Por favor,  informe seu email !!!').notEmpty();
+	req.assert('senha_usuario', 'Por favor, informe uma senha !!!').notEmpty();
 
-	req.assert('telefone_usuario','Por favor, informe seu telefone!!! ').notEmpty();
-	req.assert('cpf_usuario','Por favor, informe seu CPF !!!').notEmpty();
+	req.assert('telefone_usuario', 'Por favor, informe seu telefone!!! ').notEmpty();
+	req.assert('cpf_usuario', 'Por favor, informe seu CPF !!!').notEmpty();
 
 	var erros = req.validationErrors();
 
 
 	if (erros) {
-		res.render('usuario/dados_pessoais',{
-			titulo:'Dados pessoais | Routebus',
-			msg:erros,
+		res.render('usuario/dados_pessoais', {
+			titulo: 'Dados pessoais | Routebus',
+			msg: erros,
 			user: req.session.user
 		});
 		return;
-	}	
+	}
 
 	if (req.session.autenticar) {
 		pontos.update_dados_usuario(req.body, req.session.user[0].id_usuario, function (error, result) {
 			if (error) {
 				console.log(error);
 			} else {
-				res.render('usuario/dados_pessoais', { 
-					titulo: 'Transporte público de Dourados-MS', 
+				res.render('usuario/dados_pessoais', {
+					titulo: 'Transporte público de Dourados-MS',
 					user: req.session.user,
-					msg: [{ msg: 'Informações foram alteradas com sucesso !!!' }] 
+					msg: [{ msg: 'Informações foram alteradas com sucesso !!!' }]
 				});
 			}
 		});
@@ -73,7 +73,7 @@ module.exports.senha_mudar = function (app, req, res) {
 
 	let nodemailer = require('nodemailer');
 	let connection = app.config.connect_banco();
-	let pontos = new app.app.models.models(connection);
+	let pontos = new app.models.models(connection);
 
 	pontos.recuperar_senha(req.body.cpf_usuario, function (error, result) {
 		if (result.length > 0) {
