@@ -29,9 +29,9 @@ app.use(session({
 }));
 
 consign()
-	.include('routes')
-	.then('models')
-	.then('controllers')
+	.include('routes/')
+	.then('models/')
+	.then('controllers/')
 	.then('config/connect_banco.js')
 	.into(app);
 
