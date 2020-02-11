@@ -28,10 +28,10 @@ app.use(session({
 	saveUninitialized: false
 }));
 
-consign({ cwd: 'app' })
-	.include('routes/')
-	.then('models/')
-	.then('controllers/')
+consign({ cwd: '' })
+	.include('app/routes/')
+	.then('app/models/')
+	.then('app/controllers/')
 	.then('config/connect_banco.js')
 	.into(app);
 
