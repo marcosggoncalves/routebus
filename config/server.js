@@ -32,7 +32,7 @@ consign()
 	.include(process.cwd() + '/routes')
 	.then(process.cwd() + '/models')
 	.then(process.cwd() + '/controllers')
-	.then(process.cwd() + '../config/connect_banco.js')
+	.then('config/connect_banco.js')
 	.into(app);
 
 module.exports = { app };
