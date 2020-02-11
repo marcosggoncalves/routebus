@@ -1,5 +1,9 @@
 module.exports = function (app) {
-	console.log(app)
+	console.log("--------------------------------------------")
+	console.log(app.controllers)
+	console.log(app.routes)
+	console.log(app.models)
+	console.log("--------------------------------------------")
 	app.get('/', function (req, res) {
 		app.app.index.index(app, req, res);
 	})
