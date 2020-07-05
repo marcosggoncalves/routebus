@@ -1,4 +1,7 @@
-module.exports.pontos = function (app, req, res) {
+let connection = require('../../config/connect_banco.js');
+let pontos = require('../models/models.js')(connection);
+
+module.exports.pontos = function (req, res) {
 	let variaveis_globais = {
 		id_bairro: req.params.id,
 		dados: '',
@@ -8,9 +11,6 @@ module.exports.pontos = function (app, req, res) {
 		classifacao: ['UTEIS', 'SÁBADO', 'DOMINGOS/FERIADOS', 'PONTOS FACULTATIVOS']
 
 	}
-
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
 
 	if (variaveis_globais.semana[variaveis_globais.date.getDay() - 1] == variaveis_globais.semana[6]) {
 		variaveis_globais.filter_time = variaveis_globais.classifacao[2];

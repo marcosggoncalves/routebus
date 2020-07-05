@@ -1,10 +1,12 @@
-module.exports.salvar = function (app, req, res) {
+let connection = require('../../config/connect_banco.js');
+let pontos = require('../models/models.js')(connection);
 
-	let connection = app.config.connect_banco(), dados;
-	let ponto = new app.models.models(connection);
+module.exports.salvar = function (req, res) {
+
+	let dados = null;
 	let date = new Date();
 
-	ponto.new_favoritos(dados = {
+	pontos.new_favoritos(dados = {
 		'data_salvo': date.toLocaleDateString() + ' às ' + date.toLocaleTimeString(),
 		'id_usuario': req.params.id_usuario,
 		'id_bairro': req.params.id_bairro
@@ -17,12 +19,9 @@ module.exports.salvar = function (app, req, res) {
 	});
 }
 
-module.exports.favoritos = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let ponto = new app.models.models(connection);
-
+module.exports.favoritos = function (req, res) {
 	if (req.session.autenticar) {
-		ponto.favoritos(req.session.user[0].id_usuario, function (error, result) {
+		pontos.favoritos(req.session.user[0].id_usuario, function (error, result) {
 			if (result.length > 0) {
 				res.render('usuario/favoritos',
 					{

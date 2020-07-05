@@ -1,23 +1,27 @@
-module.exports = function (app) {
-	app.get('/Reclamacoes/:busca', function (req, res) {
-		app.controllers.reclamação.todas_reclamações(app, req, res);
-	})
-	app.get('/Reclamacoes/administracao/:busca', function (req, res) {
-		app.controllers.reclamação.todas_reclamações_adminstrador_status(app, req, res);
-	})
-	app.get('/Todas/reclamacao', function (req, res) {
-		app.controllers.reclamação.todas_reclamações_adminstrador(app, req, res);
-	})
-	app.get('/comentarios/:busca/:id', function (req, res) {
-		app.controllers.reclamação.todos_comentarios(app, req, res);
-	})
-	app.post('/comentar/:busca/:id', function (req, res) {
-		app.controllers.reclamação.new_comentar(app, req, res);
-	})
-	app.get('/Reclamacao/status/:id/:status', function (req, res) {
-		app.controllers.reclamação.status_update(app, req, res);
-	})
-	app.get('/reclamacao/usuario/:id_usuario', function (req, res) {
-		app.controllers.reclamação.buscar_usuario_reclamacao(app, req, res);
-	})
-}
+const controllers = require('./../controllers/reclamação.js');
+const router = require('express').Router();
+
+router.get('/:busca', function (req, res) {
+	controllers.todas_reclamações(req, res);
+})
+router.get('/admin/:busca', function (req, res) {
+	controllers.todas_reclamações_adminstrador_status(req, res);
+})
+router.get('/todos', function (req, res) {
+	controllers.todas_reclamações_adminstrador(req, res);
+})
+router.get('/comentarios/:busca/:id', function (req, res) {
+	controllers.todos_comentarios(req, res);
+})
+router.post('/comentar/:busca/:id', function (req, res) {
+	controllers.new_comentar(req, res);
+})
+router.get('/status/:id/:status', function (req, res) {
+	controllers.status_update(req, res);
+})
+router.get('/usuario/:id_usuario', function (req, res) {
+	controllers.buscar_usuario_reclamacao(req, res);
+})
+
+module.exports = router;
+

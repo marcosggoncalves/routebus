@@ -1,4 +1,7 @@
-module.exports.vias = function (app, req, res) {
+let connection = require('../../config/connect_banco.js');
+let pontos = require('../models/models.js')(connection);
+
+module.exports.vias = function (req, res) {
 	if (req.session.autenticar) {
 		res.render('administrador/cadastrar_via', { titulo: 'Transporte público de Dourados-MS', msg: [], user: req.session.user });
 	} else {
@@ -7,10 +10,7 @@ module.exports.vias = function (app, req, res) {
 }
 
 
-module.exports.salvar_via = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
+module.exports.salvar_via = function (req, res) {
 	req.assert('nome_sentidovia', 'Por favor, informe  nome da via !! ').notEmpty();
 	var erros = req.validationErrors();
 
@@ -23,16 +23,14 @@ module.exports.salvar_via = function (app, req, res) {
 		if (error) {
 			console.log(error);
 		} else {
-			res.redirect('/Todas/reclamacao');
+			res.redirect('/reclamacoes/todos');
 		}
 	});
 }
 
 
 
-module.exports.salvar_horario_classificacao = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
+module.exports.salvar_horario_classificacao = function (req, res) {
 
 	req.assert('nome_classifcação', 'Por favor, informe nome para classificação !! ').notEmpty();
 	var erros = req.validationErrors();
@@ -46,17 +44,14 @@ module.exports.salvar_horario_classificacao = function (app, req, res) {
 		if (error) {
 			console.log(error);
 		} else {
-			res.redirect('/Todas/reclamacao');
+			res.redirect('/reclamacoes/todos');
 		}
 	});
 }
 
 
 
-module.exports.cadastros_horario = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
+module.exports.cadastros_horario = function (req, res) {
 	if (req.session.autenticar) {
 		pontos.classificacao_horario(function (error, result3) {
 			pontos.horario(function (error, result2) {
@@ -79,10 +74,7 @@ module.exports.cadastros_horario = function (app, req, res) {
 		res.redirect('/login');
 	}
 }
-module.exports.cadastros_horario_salvar = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
+module.exports.cadastros_horario_salvar = function (req, res) {
 	req.assert('horario_time', 'Por favor, informe um horário !! ').notEmpty();
 	req.assert('percurso_viagem', 'Por favor, informe percurso de inicio !! ').notEmpty();
 
@@ -133,10 +125,7 @@ module.exports.cadastros_horario_salvar = function (app, req, res) {
 	});
 }
 
-module.exports.classificacao_horario = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
+module.exports.classificacao_horario = function (req, res) {
 	pontos.insert_classificacao_horario(req.body, function (error, result) {
 		if (error) {
 			console.log(error);

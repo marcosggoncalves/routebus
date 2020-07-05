@@ -1,4 +1,4 @@
-class models {
+class Models {
 	constructor(connection){
 		this.connection = connection;
 	}
@@ -103,6 +103,6 @@ class models {
 	}
 }
 
-module.exports = function() {
-	return models;
+module.exports = function(connection) {
+	return new Models(connection);
 }

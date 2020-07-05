@@ -1,11 +1,12 @@
-module.exports.index = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
+let connection = require('../../config/connect_banco.js');
+let pontos = require('../models/models.js')(connection);
+let md5 = require('md5');
 
+module.exports.index = function (req, res) {
 	pontos.bairros(function (error, result) {
 		if (req.session.autenticar) {
 			if (req.session.nivel_acesso == 'Administrador') {
-				res.redirect('/Todas/reclamacao');
+				res.redirect('/reclamacoes/todos');
 			} else {
 				res.render('usuario/index', { titulo: 'Transporte público de Dourados-MS', bairros: result, user: req.session.user });
 			}
@@ -15,7 +16,7 @@ module.exports.index = function (app, req, res) {
 	});
 };
 
-module.exports.dados_pessoais = function (app, req, res) {
+module.exports.dados_pessoais = function (req, res) {
 	if (req.session.autenticar) {
 		res.render('usuario/dados_pessoais', { titulo: 'Transporte público de Dourados-MS', user: req.session.user, msg: [] });
 	} else {
@@ -23,12 +24,7 @@ module.exports.dados_pessoais = function (app, req, res) {
 	}
 }
 
-module.exports.update_dados_pessoais = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
-
-
+module.exports.update_dados_pessoais = function (req, res) {
 	req.assert('nome_usuario', 'Por favor, informe  nome completo !!! ').notEmpty();
 	req.assert('email_usuario', 'Por favor,  informe seu email !!!').notEmpty();
 	req.assert('senha_usuario', 'Por favor, informe uma senha !!!').notEmpty();
@@ -37,7 +33,6 @@ module.exports.update_dados_pessoais = function (app, req, res) {
 	req.assert('cpf_usuario', 'Por favor, informe seu CPF !!!').notEmpty();
 
 	var erros = req.validationErrors();
-
 
 	if (erros) {
 		res.render('usuario/dados_pessoais', {
@@ -48,8 +43,11 @@ module.exports.update_dados_pessoais = function (app, req, res) {
 		return;
 	}
 
+	let dados = req.body;
+	dados.senha_usuario = md5(dados.senha_usuario);
+
 	if (req.session.autenticar) {
-		pontos.update_dados_usuario(req.body, req.session.user[0].id_usuario, function (error, result) {
+		pontos.update_dados_usuario(dados, req.session.user[0].id_usuario, function (error, result) {
 			if (error) {
 				console.log(error);
 			} else {
@@ -66,14 +64,12 @@ module.exports.update_dados_pessoais = function (app, req, res) {
 }
 
 
-module.exports.esqueceu_senha = function (app, req, res) {
+module.exports.esqueceu_senha = function (req, res) {
 	res.render('usuario/senha', { titulo: 'Acesse sua conta !!!', msg: [], dados: [] });
 }
-module.exports.senha_mudar = function (app, req, res) {
+module.exports.senha_mudar = function (req, res) {
 
 	let nodemailer = require('nodemailer');
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
 
 	pontos.recuperar_senha(req.body.cpf_usuario, function (error, result) {
 		if (result.length > 0) {

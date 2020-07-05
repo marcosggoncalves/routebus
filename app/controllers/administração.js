@@ -1,8 +1,7 @@
+let connection = require('../../config/connect_banco.js');
+let pontos = require('../models/models.js')(connection);
 
-module.exports.bairros = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
+module.exports.bairros = function (req, res) {
 	pontos.bairros(function (error, result) {
 		if (req.session.autenticar) {
 			res.render('administrador/bairros', { titulo: 'Transporte público de Dourados-MS', titulo_1: 'Bairros de  Dourados-MS', bairros: result, user: req.session.user });
@@ -12,10 +11,7 @@ module.exports.bairros = function (app, req, res) {
 	})
 }
 
-module.exports.horario_bairros = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
+module.exports.horario_bairros = function (req, res) {
 	pontos.horarios_bairro(req.params.id_bairro, function (error, result) {
 		if (req.session.autenticar) {
 			res.render('administrador/horarios', {
@@ -30,10 +26,7 @@ module.exports.horario_bairros = function (app, req, res) {
 }
 
 
-module.exports.linhas = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
+module.exports.linhas = function (req, res) {
 	pontos.linhas(function (error, result) {
 		if (req.session.autenticar) {
 			res.render('administrador/linhas', {
@@ -47,10 +40,7 @@ module.exports.linhas = function (app, req, res) {
 	})
 }
 
-module.exports.Ruas = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
+module.exports.Ruas = function (req, res) {
 	pontos.ruas(function (error, result) {
 		if (req.session.autenticar) {
 			res.render('administrador/ruas', {
@@ -63,10 +53,7 @@ module.exports.Ruas = function (app, req, res) {
 		}
 	})
 }
-module.exports.pontos = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
+module.exports.pontos = function (req, res) {
 	pontos.pontos_todos(function (error, result) {
 		if (req.session.autenticar) {
 			res.render('administrador/pontos', {
@@ -81,10 +68,7 @@ module.exports.pontos = function (app, req, res) {
 }
 
 
-module.exports.usuarios = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
+module.exports.usuarios = function (req, res) {
 	pontos.usuarios(function (error, usuarios) {
 		if (req.session.autenticar) {
 			res.render('administrador/usuarios', {
@@ -99,7 +83,7 @@ module.exports.usuarios = function (app, req, res) {
 }
 
 
-module.exports.linhas_cadastros = function (app, req, res) {
+module.exports.linhas_cadastros = function (req, res) {
 	if (req.session.autenticar) {
 		res.render('administrador/cadastrar_linha', { titulo: 'Transporte público de Dourados-MS', msg: [], user: req.session.user });
 	} else {
@@ -107,12 +91,7 @@ module.exports.linhas_cadastros = function (app, req, res) {
 	}
 
 }
-module.exports.salvar_linha = function (app, req, res) {
-
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
-
+module.exports.salvar_linha = function (req, res) {
 
 	req.assert('nome_linha', 'Por favor, informe  nome da linha!!! ').notEmpty();
 	req.assert('saida_linha', 'Por favor, informe para inicio !!!').notEmpty();
@@ -140,12 +119,7 @@ module.exports.salvar_linha = function (app, req, res) {
 		})
 	});
 }
-module.exports.salvar_rua = function (app, req, res) {
-
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
-
+module.exports.salvar_rua = function (req, res) {
 
 	req.assert('nome_rua', 'Por favor, informe  nome da rua!!! ').notEmpty();
 
@@ -171,11 +145,7 @@ module.exports.salvar_rua = function (app, req, res) {
 		})
 	});
 }
-module.exports.bairros_cadastros = function (app, req, res) {
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
-
+module.exports.bairros_cadastros = function (req, res) {
 	pontos.linhas(function (error, result) {
 		if (req.session.autenticar) {
 			res.render('administrador/cadastrar_bairro', { titulo: 'Transporte público de Dourados-MS', linhas: result, msg: [], user: req.session.user });
@@ -185,13 +155,7 @@ module.exports.bairros_cadastros = function (app, req, res) {
 	})
 }
 
-module.exports.salvar_bairro = function (app, req, res) {
-
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
-
-
+module.exports.salvar_bairro = function (req, res) {
 	req.assert('lat', 'Por favor, informe  latitude do bairro !!! ').notEmpty();
 	req.assert('lng', 'Por favor, informe longitude do bairro !!!').notEmpty();
 	req.assert('nome_bairro', 'Por favor, informe nome do bairro  !!!').notEmpty();
@@ -218,12 +182,7 @@ module.exports.salvar_bairro = function (app, req, res) {
 		})
 	});
 }
-module.exports.pontos_cadastros = function (app, req, res) {
-
-
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
+module.exports.pontos_cadastros = function (req, res) {
 
 	if (req.session.autenticar) {
 		pontos.bairros(function (erros, bairros) {
@@ -235,12 +194,7 @@ module.exports.pontos_cadastros = function (app, req, res) {
 		res.redirect('/');
 	}
 }
-module.exports.salvar_ponto = function (app, req, res) {
-
-	let connection = app.config.connect_banco();
-	let pontos = new app.models.models(connection);
-
-
+module.exports.salvar_ponto = function (req, res) {
 
 	req.assert('lat_ponto', 'Por favor, informe  latitude do ponto !!! ').notEmpty();
 	req.assert('lng_ponto', 'Por favor, informe longitude do ponto !!!').notEmpty();

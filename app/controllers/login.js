@@ -1,15 +1,15 @@
-module.exports.login = function (app, req, res) {
+let connection = require('../../config/connect_banco.js');
+let pontos = require('../models/models.js')(connection);
+let md5 = require('md5');
+
+module.exports.login = function (req, res) {
 	res.render('usuario/login', { titulo: 'Acesse sua conta !!!', msg: [], dados: [] });
 }
-module.exports.cadastrar_usuario = function (app, req, res) {
+module.exports.cadastrar_usuario = function (req, res) {
 	res.render('usuario/cadastro', { titulo: 'Acesse sua conta !!!', msg: [] });
 }
 
-module.exports.cadastrar_usuario_salvar = function (app, req, res) {
-	var connection = app.config.connect_banco(), dados, img_nome;
-	var pontos = new app.models.models(connection);
-
-
+module.exports.cadastrar_usuario_salvar = function (req, res) {
 	req.assert('nome_usuario', 'Por favor, informe  nome completo !!! ').notEmpty();
 	req.assert('email_usuario', 'Por favor,  informe seu email !!!').notEmpty();
 	req.assert('senha_usuario', 'Por favor, informe uma senha !!!').notEmpty();
@@ -34,7 +34,7 @@ module.exports.cadastrar_usuario_salvar = function (app, req, res) {
 	pontos.insert_usuario(dados = {
 		'nome_usuario': req.body.nome_usuario,
 		'email_usuario': req.body.email_usuario,
-		'senha_usuario': req.body.senha_usuario,
+		'senha_usuario': md5(req.body.senha_usuario),
 		'telefone_usuario': req.body.telefone_usuario,
 		'cpf_usuario': req.body.cpf_usuario,
 		'perfil_usuario': img_nome,
@@ -48,11 +48,8 @@ module.exports.cadastrar_usuario_salvar = function (app, req, res) {
 	});
 }
 
-module.exports.autenticar = function (app, req, res) {
+module.exports.autenticar = function (req, res) {
 	var dados = req.body;
-
-	var connection = app.config.connect_banco();
-	var models = new app.models.models(connection);
 
 	req.assert('user', 'Por favor, informe seu nome !!! ').notEmpty();;
 	req.assert('password', 'Por favor, informe sua senha !!!').notEmpty();
@@ -67,7 +64,8 @@ module.exports.autenticar = function (app, req, res) {
 		return;
 	}
 
-	models.logar(dados.user, dados.password, function (error, results) {
+	pontos.logar(dados.user,md5(dados.password), function (error, results) {
+
 		if (error) {
 			console.log(error);
 		} else {
@@ -82,7 +80,7 @@ module.exports.autenticar = function (app, req, res) {
 		};
 	});
 }
-module.exports.finalizar_session = function (app, req, res) {
+module.exports.finalizar_session = function (req, res) {
 	req.session.destroy(function (error) {
 		if (error) {
 			console.log(error);

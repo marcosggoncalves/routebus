@@ -24,7 +24,7 @@ CREATE TABLE usuarios (
 id_usuario integer PRIMARY KEY auto_increment,
 nome_usuario varchar(80),
 email_usuario varchar(100),
-senha_usuario varchar(20),
+senha_usuario varchar(255),
 telefone_usuario char(11),
 cpf_usuario char(11),
 perfil_usuario text,

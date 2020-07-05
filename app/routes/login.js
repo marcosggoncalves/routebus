@@ -1,20 +1,21 @@
-module.exports = function (app) {
+const controllers = require('./../controllers/login.js');
+const router = require('express').Router();
+var upload = require('../../scripts_base/upload');
 
-	var upload = require('../../scripts_base/upload');
+router.get('/',(req, res) => {
+	controllers.login(req, res);
+})
+router.get('/finalizar/session',(req, res) => {
+	controllers.finalizar_session(req, res);
+})
+router.get('/cadastrar/conta/usuario',(req, res) => {
+	controllers.cadastrar_usuario(req, res);
+})
+router.post('/cadastrar/conta/usuario/salvar', upload.single('anexo_arquivo'),(req, res) => {
+	controllers.cadastrar_usuario_salvar(req, res);
+})
+router.post('/logar',(req, res) => {
+	controllers.autenticar(req, res);
+})
 
-	app.get('/login', function (req, res) {
-		app.controllers.login.login(app, req, res);
-	})
-	app.get('/finalizar/session', function (req, res) {
-		app.controllers.login.finalizar_session(app, req, res);
-	})
-	app.get('/cadastrar/conta/usuario', function (req, res) {
-		app.controllers.login.cadastrar_usuario(app, req, res);
-	})
-	app.post('/cadastrar/conta/usuario/salvar', upload.single('anexo_arquivo'), function (req, res) {
-		app.controllers.login.cadastrar_usuario_salvar(app, req, res);
-	})
-	app.post('/logar', function (req, res) {
-		app.controllers.login.autenticar(app, req, res);
-	})
-}
+module.exports = router;

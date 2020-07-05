@@ -5,14 +5,6 @@ const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const session = require('express-session');
 
-// app.listen(2020, () => {
-// 	console.log("rodando na porta 3000.");
-// });
-
-app.listen(process.env.PORT, () => {
-	console.log('Servidor inicializado na porta:' + process.env.PORT);
-});
-
 app.set('views', './app/views');
 app.set('view engine', 'ejs');
 app.use(express.static('./app/public'));
@@ -28,11 +20,25 @@ app.use(session({
 	saveUninitialized: false
 }));
 
-consign()
-	.include('app/models/models.js')
-	.then('app/controllers/index.js')
-	.then('app/routes/index.js')
-	.then('config/connect_banco.js')
-	.into(app);
+// Load controllers
 
-module.exports = { app };
+const index = require('../app/routes/index.js');
+const bairro = require('../app/routes/bairro.js');
+const admin = require('../app/routes/administração.js');
+const efetuar_reclamacao = require('../app/routes/efetuar_reclamacao.js');
+const favoritos = require('../app/routes/favoritos.js');
+const login = require('../app/routes/login.js');
+const ponto = require('../app/routes/ponto.js');
+const reclamacao = require('../app/routes/reclamações.js');
+
+// Carregamanto de rotas.
+app.use('/', index);
+app.use('/bairros', bairro);
+app.use('/admin', admin);
+app.use('/efetuar-reclamacao', efetuar_reclamacao);
+app.use('/favoritos', favoritos);
+app.use('/login', login);
+app.use('/pontos', ponto);
+app.use('/reclamacoes', reclamacao);
+
+module.exports = app ;

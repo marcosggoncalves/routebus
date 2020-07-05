@@ -1,11 +1,13 @@
-module.exports = function (app) {
+const controllers = require('./../controllers/reclamação.js');
+const router = require('express').Router();
+var upload = require('../../scripts_base/upload');
 
-	var upload = require('../../scripts_base/upload');
+router.get('/', function (req, res) {
+	controllers.efetuar_reclamacao(req, res);
+});
 
-	app.get('/efetuar_reclamacao', function (req, res) {
-		app.controllers.reclamação.efetuar_reclamacao(app, req, res);
-	})
-	app.post('/registrar_reclamacao', upload.single('anexo_arquivo'), function (req, res) {
-		app.controllers.reclamação.salvar_reclamacao(app, req, res);
-	})
-}
+router.post('/salvar', upload.single('anexo_arquivo'), function (req, res) {
+	controllers.salvar_reclamacao(req, res);
+});
+
+module.exports = router;

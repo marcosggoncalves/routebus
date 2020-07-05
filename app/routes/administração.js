@@ -1,65 +1,64 @@
-module.exports = function (app) {
-	app.get('/administrativo/bairros', function (req, res) {
-		app.controllers.administração.bairros(app, req, res);
-	})
-	app.get('/administrativo/bairros/horarios/:id_bairro', function (req, res) {
-		app.controllers.administração.horario_bairros(app, req, res);
-	})
-	app.get('/administrativo/bairros/linhas', function (req, res) {
-		app.controllers.administração.linhas(app, req, res);
-	})
-	app.get('/administrativo/bairros/ruas', function (req, res) {
-		app.controllers.administração.Ruas(app, req, res);
-	})
-	app.get('/administrativo/bairros/pontos', function (req, res) {
-		app.controllers.administração.pontos(app, req, res);
-	})
-	app.get('/administrativo/bairros/usuarios', function (req, res) {
-		app.controllers.administração.usuarios(app, req, res);
-	})
-	app.get('/administrativo/bairros/linhas/cadastros', function (req, res) {
-		app.controllers.administração.linhas_cadastros(app, req, res);
-	})
-	// ´´´´´´
+const controllers = require('./../controllers/administração.js');
+const controllersCadastros = require('./../controllers/administração_cadastro.js');
 
+const router = require('express').Router();
 
-	app.get('/administrativo/cadastros/via', function (req, res) {
-		app.controllers.administração_cadastro.vias(app, req, res);
-	})
-	app.get('/administrativo/cadastros/horario', function (req, res) {
-		app.controllers.administração_cadastro.cadastros_horario(app, req, res);
-	})
-	app.post('/cadastrar_via', function (req, res) {
-		app.controllers.administração_cadastro.salvar_via(app, req, res);
-	})
-	app.post('/cadastrar_classifacao_horario', function (req, res) {
-		app.controllers.administração_cadastro.salvar_horario_classificacao(app, req, res);
-	})
-	app.post('/cadastrar_horario', function (req, res) {
-		app.controllers.administração_cadastro.cadastros_horario_salvar(app, req, res);
-	})
-	app.post('/cadastrar_horario/classificacao', function (req, res) {
-		app.controllers.administração_cadastro.classificacao_horario(app, req, res);
-	})
+router.get('/bairros', function (req, res) {
+	controllers.bairros(req, res);
+})
+router.get('/bairros/horarios/:id_bairro', function (req, res) {
+	controllers.horario_bairros(req, res);
+})
+router.get('/bairros/linhas', function (req, res) {
+	controllers.linhas(req, res);
+})
+router.get('/bairros/ruas', function (req, res) {
+	controllers.Ruas(req, res);
+})
+router.get('/bairros/pontos', function (req, res) {
+	controllers.pontos(req, res);
+})
+router.get('/bairros/usuarios', function (req, res) {
+	controllers.usuarios(req, res);
+})
+router.get('/bairros/linhas/cadastros', function (req, res) {
+	controllers.linhas_cadastros(req, res);
+})
+router.get('/cadastros/via', function (req, res) {
+	controllersCadastros.vias(req, res);
+})
+router.get('/cadastros/horario', function (req, res) {
+	controllersCadastros.cadastros_horario(req, res);
+})
+router.post('/cadastrar-via', function (req, res) {
+	controllersCadastros.salvar_via(req, res);
+})
+router.post('/cadastrar-classificacao-horario', function (req, res) {
+	controllersCadastros.salvar_horario_classificacao(req, res);
+})
+router.post('/cadastrar-horario', function (req, res) {
+	controllersCadastros.cadastros_horario_salvar(req, res);
+})
+router.post('/cadastrar-horario-classificacao', function (req, res) {
+	controllersCadastros.classificacao_horario(req, res);
+})
+router.get('/bairros/pontos/cadastros', function (req, res) {
+	controllers.pontos_cadastros(req, res);
+})
+router.get('/bairros/bairros/cadastros', function (req, res) {
+	controllers.bairros_cadastros(req, res);
+})
+router.post('/cadastrar-bairro', function (req, res) {
+	controllers.salvar_bairro(req, res);
+})
+router.post('/cadastrar-linha', function (req, res) {
+	controllers.salvar_linha(req, res);
+})
+router.post('/cadastrar-rua', function (req, res) {
+	controllers.salvar_rua(req, res);
+})
+router.post('/cadastrar-ponto', function (req, res) {
+	controllers.salvar_ponto(req, res);
+})
 
-
-	// ´´´´´´
-	app.get('/administrativo/bairros/pontos/cadastros', function (req, res) {
-		app.controllers.administração.pontos_cadastros(app, req, res);
-	})
-	app.get('/administrativo/bairros/bairros/cadastros', function (req, res) {
-		app.controllers.administração.bairros_cadastros(app, req, res);
-	})
-	app.post('/cadastrar_bairro', function (req, res) {
-		app.controllers.administração.salvar_bairro(app, req, res);
-	})
-	app.post('/cadastrar_linha', function (req, res) {
-		app.controllers.administração.salvar_linha(app, req, res);
-	})
-	app.post('/cadastrar_rua', function (req, res) {
-		app.controllers.administração.salvar_rua(app, req, res);
-	})
-	app.post('/cadastrar_Ponto', function (req, res) {
-		app.controllers.administração.salvar_ponto(app, req, res);
-	})
-}
+module.exports = router;

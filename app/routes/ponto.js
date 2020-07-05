@@ -1,5 +1,9 @@
-module.exports = function (app) {
-	app.get('/ponto/:id', function (req, res) {
-		app.controllers.ponto.pontos(app, req, res);
-	})
-}
+const controllers = require('./../controllers/ponto.js');
+const router = require('express').Router();
+
+router.get('/:id', function (req, res) {
+	controllers.pontos(req, res);
+})
+
+module.exports = router;
+	

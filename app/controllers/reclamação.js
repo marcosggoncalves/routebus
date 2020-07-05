@@ -1,14 +1,14 @@
-module.exports.efetuar_reclamacao = function (app, req, res) {
+let connection = require('../../config/connect_banco.js');
+let pontos = require('../models/models.js')(connection);
+
+module.exports.efetuar_reclamacao = function (req, res) {
 	if (req.session.autenticar) {
 		res.render('usuario/efetuar_reclamacao', { titulo: 'Transporte público de Dourados-MS', msg: [], user: req.session.user });
 	} else {
 		res.redirect('/login');
 	}
 }
-module.exports.salvar_reclamacao = function (app, req, res) {
-	var connection = app.config.connect_banco(), dados, img_nome;
-	var pontos = new app.models.models(connection);
-
+module.exports.salvar_reclamacao = function (req, res) {
 	req.assert('data_de_reclamação', 'Por favor, informe  data !!! ').notEmpty();
 	req.assert('desc_reclamação', 'Por favor, descreva há reclamação !!!').notEmpty();
 	req.assert('tipo_reclamção', 'Por favor, descreva o assunto da reclamação !!!').notEmpty();
@@ -45,10 +45,7 @@ module.exports.salvar_reclamacao = function (app, req, res) {
 		}
 	});
 }
-module.exports.todas_reclamações = function (app, req, res) {
-	var connection = app.config.connect_banco();
-	var pontos = new app.models.models(connection);
-
+module.exports.todas_reclamações = function (req, res) {
 	if (req.session.autenticar) {
 		pontos.reclamacoes_usuario(req.session.user[0].id_usuario, req.params.busca, function (error, result) {
 			if (result.length > 0) {
@@ -78,11 +75,7 @@ module.exports.todas_reclamações = function (app, req, res) {
 		res.redirect('/');
 	}
 };
-module.exports.todos_comentarios = function (app, req, res, io) {
-	var connection = app.config.connect_banco();
-	var pontos = new app.models.models(connection);
-
-
+module.exports.todos_comentarios = function (req, res) {
 	if (req.session.autenticar) {
 		pontos.reclamacoes_usuario(req.session.user[0].id_usuario, req.params.busca, function (error, results) {
 			pontos.reclamacoes_comentarios(req.params.id, function (error, result) {
@@ -117,9 +110,8 @@ module.exports.todos_comentarios = function (app, req, res, io) {
 		res.redirect('/');
 	}
 };
-module.exports.new_comentar = function (app, req, res) {
-	var connection = app.config.connect_banco(), dados;
-	var pontos = new app.models.models(connection);
+module.exports.new_comentar = function (req, res) {
+	let dados = null;
 	var date = new Date();
 
 	pontos.new_comentar_reclamacao(dados = {
@@ -131,15 +123,11 @@ module.exports.new_comentar = function (app, req, res) {
 		if (error) {
 			console.log(error);
 		} else {
-			res.redirect('/comentarios/' + req.params.busca + '/' + req.params.id + '');
+			res.redirect('/reclamacoes/comentarios/' + req.params.busca + '/' + req.params.id + '');
 		}
 	});
 };
-module.exports.todas_reclamações_adminstrador_status = function (app, req, res) {
-
-	var connection = app.config.connect_banco();
-	var pontos = new app.models.models(connection);
-
+module.exports.todas_reclamações_adminstrador_status = function (req, res) {
 	if (req.session.autenticar) {
 		if (req.session.nivel_acesso == 'Administrador') {
 			pontos.reclamacoes_status(req.params.busca, function (error, result) {
@@ -174,10 +162,7 @@ module.exports.todas_reclamações_adminstrador_status = function (app, req, res
 	}
 };
 
-module.exports.todas_reclamações_adminstrador = function (app, req, res) {
-	var connection = app.config.connect_banco();
-	var pontos = new app.models.models(connection);
-
+module.exports.todas_reclamações_adminstrador = function (req, res) {
 	if (req.session.autenticar) {
 		if (req.session.nivel_acesso == 'Administrador') {
 			pontos.reclamacoes(function (error, result) {
@@ -212,22 +197,16 @@ module.exports.todas_reclamações_adminstrador = function (app, req, res) {
 	}
 };
 
-module.exports.status_update = function (app, req, res) {
-	var connection = app.config.connect_banco();
-	var pontos = new app.models.models(connection);
-
+module.exports.status_update = function (req, res) {
 	pontos.status_update(req.params.id, req.params.status, function (error, result) {
 		if (error) {
 			console.log(error);
 		} else {
-			res.redirect('/Todas/reclamacao');
+			res.redirect('/reclamacoes/todos');
 		}
 	})
 }
-module.exports.buscar_usuario_reclamacao = function (app, req, res) {
-	var connection = app.config.connect_banco();
-	var pontos = new app.models.models(connection);
-
+module.exports.buscar_usuario_reclamacao = function (req, res) {
 	if (req.session.autenticar) {
 		if (req.session.nivel_acesso == 'Administrador') {
 			pontos.reclamacoes_usuario_especifico(req.params.id_usuario, function (error, result) {
