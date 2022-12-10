@@ -14,7 +14,7 @@
     "consign": "^0.1.6",
     "dateformat": "^3.0.3",
     "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-session": "^1.15.6",
     "express-validator": "^5.3.0",
     "md5": "^2.2.1",
