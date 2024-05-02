@@ -51,7 +51,7 @@ module.exports.todas_reclamacoes = function (req, res) {
 	if (req.session.autenticar) {
 		pontos.reclamacoes_usuario(req.session.user[0].id_usuario, req.params.busca, function (error, result) {
 			if (result.length > 0) {
-				res.render('usuario/reclamações', {
+				res.render('usuario/reclamacoes', {
 					titulo: 'Transporte público de Dourados-MS',
 					titulo_1: 'Reclamações efetuadas',
 					reclamacoes: result,
@@ -61,7 +61,7 @@ module.exports.todas_reclamacoes = function (req, res) {
 					user: req.session.user
 				});
 			} else {
-				res.render('usuario/reclamações', {
+				res.render('usuario/reclamacoes', {
 					titulo: 'Transporte público de Dourados-MS',
 					titulo_1: 'Reclamações efetuadas',
 					reclamacoes: result,
@@ -83,20 +83,20 @@ module.exports.todos_comentarios = function (req, res) {
 		pontos.reclamacoes_usuario(req.session.user[0].id_usuario, req.params.busca, function (error, results) {
 			pontos.reclamacoes_comentarios(req.params.id, function (error, result) {
 				if (result.length <= 0) {
-					res.render('usuario/reclamações', {
+					res.render('usuario/reclamacoes', {
 						titulo: 'Transporte público de Dourados-MS',
 						titulo_1: 'Reclamações efetuadas',
 						reclamacoes: results,
 						comentarios: [],
 						cont: 0,
-						msg: [{ msg: 'Nenhum comentário realizado!!' }],
+						msg: [{ msg: 'Nenhum comentário realizado.' }],
 						user: req.session.user
 					});
 				} else {
 					if (error) {
 						console.log(error);
 					} else {
-						res.render('usuario/reclamações', {
+						res.render('usuario/reclamacoes', {
 							titulo: 'Transporte público de Dourados-MS',
 							titulo_1: 'Reclamações efetuadas',
 							reclamacoes: result,
@@ -137,7 +137,7 @@ module.exports.todas_reclamacoes_adminstrador_status = function (req, res) {
 		if (req.session.nivel_acesso == 'Administrador') {
 			pontos.reclamacoes_status(req.params.busca, function (error, result) {
 				if (result.length > 0) {
-					res.render('usuario/reclamações', {
+					res.render('usuario/reclamacoes', {
 						titulo: 'Transporte público de Dourados-MS',
 						titulo_1: 'Reclamações efetuadas',
 						reclamacoes: result,
@@ -147,7 +147,7 @@ module.exports.todas_reclamacoes_adminstrador_status = function (req, res) {
 						user: req.session.user
 					});
 				} else {
-					res.render('usuario/reclamações', {
+					res.render('usuario/reclamacoes', {
 						titulo: 'Transporte público de Dourados-MS',
 						titulo_1: 'Reclamações efetuadas',
 						reclamacoes: result,
@@ -172,7 +172,7 @@ module.exports.todas_reclamacoes_adminstrador = function (req, res) {
 		if (req.session.nivel_acesso == 'Administrador') {
 			pontos.reclamacoes(function (error, result) {
 				if (result.length > 0) {
-					res.render('usuario/reclamações', {
+					res.render('usuario/reclamacoes', {
 						titulo: 'Transporte público de Dourados-MS',
 						titulo_1: 'Reclamações efetuadas',
 						reclamacoes: result,
@@ -182,7 +182,7 @@ module.exports.todas_reclamacoes_adminstrador = function (req, res) {
 						user: req.session.user
 					});
 				} else {
-					res.render('usuario/reclamações', {
+					res.render('usuario/reclamacoes', {
 						titulo: 'Transporte público de Dourados-MS',
 						titulo_1: 'Reclamações efetuadas',
 						reclamacoes: result,
@@ -216,7 +216,7 @@ module.exports.buscar_usuario_reclamacao = function (req, res) {
 		if (req.session.nivel_acesso == 'Administrador') {
 			pontos.reclamacoes_usuario_especifico(req.params.id_usuario, function (error, result) {
 				if (result.length > 0) {
-					res.render('usuario/reclamações', {
+					res.render('usuario/reclamacoes', {
 						titulo: 'Transporte público de Dourados-MS',
 						titulo_1: 'Reclamações efetuadas',
 						reclamacoes: result,
@@ -226,7 +226,7 @@ module.exports.buscar_usuario_reclamacao = function (req, res) {
 						user: req.session.user
 					});
 				} else {
-					res.render('usuario/reclamações', {
+					res.render('usuario/reclamacoes', {
 						titulo: 'Transporte público de Dourados-MS',
 						titulo_1: 'Reclamações efetuadas',
 						reclamacoes: result,

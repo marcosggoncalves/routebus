@@ -65,7 +65,7 @@
 							</div>
 						</form>
 						<div class="titulo">
-							<h1>Registrar Classificação horário</h1>
+							<h1>Registrar Classificação Horário</h1>
 						</div>
 						<form action="admin/cadastrar-horario-classificacao" method="post">
 							<div class="container_input">
@@ -81,11 +81,11 @@
 							</div>
 							<div class="container_input">
 								<label>Classificação</label>
-								<select name="id_classificação">
+								<select name="id_classificacao">
 									<option>Selecionar bairro..</option>
-									<%if(classificação.length>0){%>
-										<%for(var z = 0 ; z < classificação.length;z++){%>
-											<option value="<%=classificação[z].id_classificação%>"><%=classificação[z].nome_classifcação%></option>
+									<%if(classificacao.length >0){%>
+										<%for(var z = 0 ; z < classificacao.length ;z++){%>
+											<option value="<%=classificacao[z].id_classificacao%>"><%=classificacao[z].nome_classificacao%></option>
 										<%}%>
 									<%}%>
 								</select>

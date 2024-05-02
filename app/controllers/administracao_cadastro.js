@@ -10,7 +10,7 @@ module.exports.vias = function (req, res) {
 }
 
 module.exports.salvar_via = function (req, res) {
-	req.assert('nome_sentidovia', 'Por favor, informe  nome da via !! ').notEmpty();
+	req.assert('nome_sentidovia', 'Por favor, informe  nome da via. ').notEmpty();
 	var erros = req.validationErrors();
 
 	if (erros) {
@@ -29,7 +29,7 @@ module.exports.salvar_via = function (req, res) {
 
 module.exports.salvar_horario_classificacao = function (req, res) {
 
-	req.assert('nome_classifcação', 'Por favor, informe nome para classificação !! ').notEmpty();
+	req.assert('nome_classificacao', 'Por favor, informe nome para classificação. ').notEmpty();
 	var erros = req.validationErrors();
 
 	if (erros) {
@@ -37,11 +37,11 @@ module.exports.salvar_horario_classificacao = function (req, res) {
 		return;
 	}
 
-	pontos.insert_classificação(req.body, function (error, result) {
+	pontos.insert_classificacao(req.body, function (error, result) {
 		if (error) {
 			console.log(error);
 		} else {
-			res.redirect('/reclamacoes/todos');
+			res.redirect('/admin/cadastros/via');
 		}
 	});
 }
@@ -59,7 +59,7 @@ module.exports.cadastros_horario = function (req, res) {
 							vias: results,
 							bairros: result,
 							horario: result2,
-							classificação: result3
+							classificacao: result3
 						});
 					});
 				});
@@ -71,8 +71,8 @@ module.exports.cadastros_horario = function (req, res) {
 }
 
 module.exports.cadastros_horario_salvar = function (req, res) {
-	req.assert('horario_time', 'Por favor, informe um horário !! ').notEmpty();
-	req.assert('percurso_viagem', 'Por favor, informe percurso de inicio !! ').notEmpty();
+	req.assert('horario_time', 'Por favor, informe um horário. ').notEmpty();
+	req.assert('percurso_viagem', 'Por favor, informe percurso de inicio. ').notEmpty();
 
 	var erros = req.validationErrors();
 
@@ -88,7 +88,7 @@ module.exports.cadastros_horario_salvar = function (req, res) {
 							vias: results,
 							bairros: result,
 							horario: result2,
-							classificação: result3
+							classificacao: result3
 						});
 					});
 				});
@@ -106,12 +106,12 @@ module.exports.cadastros_horario_salvar = function (req, res) {
 						pontos.vias(function (error, results) {
 							res.render('administrador/cadastrar_horario', {
 								titulo: 'Transporte público de Dourados-MS',
-								msg: [{ msg: 'Horário salvo com sucesso !!' }],
+								msg: [{ msg: 'Horário salvo com sucesso.' }],
 								user: req.session.user,
 								vias: results,
 								bairros: result,
 								horario: result2,
-								classificação: result3
+								classificacao: result3
 							});
 						});
 					});
@@ -132,12 +132,12 @@ module.exports.classificacao_horario = function (req, res) {
 						pontos.vias(function (error, results) {
 							res.render('administrador/cadastrar_horario', {
 								titulo: 'Transporte público de Dourados-MS',
-								msg: [{ msg: 'Classificação salva com sucesso !!' }],
+								msg: [{ msg: 'Classificação salva com sucesso.' }],
 								user: req.session.user,
 								vias: results,
 								bairros: result,
 								horario: result2,
-								classificação: result3
+								classificacao: result3
 							});
 						});
 					});
