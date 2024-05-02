@@ -1,10 +1,11 @@
-let connection = require('../../config/connect_banco.js');
+let connection = require('../../config/database.js');
 let pontos = require('../models/models.js')(connection);
 let md5 = require('md5');
 
 module.exports.login = function (req, res) {
 	res.render('usuario/login', { titulo: 'Acesse sua conta !!!', msg: [], dados: [] });
 }
+
 module.exports.cadastrar_usuario = function (req, res) {
 	res.render('usuario/cadastro', { titulo: 'Acesse sua conta !!!', msg: [] });
 }
@@ -80,6 +81,7 @@ module.exports.autenticar = function (req, res) {
 		};
 	});
 }
+
 module.exports.finalizar_session = function (req, res) {
 	req.session.destroy(function (error) {
 		if (error) {

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<%- include('../components/head') %>
+<body>
+	<main>
+		<section class="container_layout">
+			<%- include('../components/sidebar') %>
+			<div>
+				<%- include('../components/header') %>
+				<div class="container-card-reclamacao">
+					<div class="tela">
+						<div class="msg">
+							<%if(msg.length >0){%>
+								<%for(var a = 0; a <msg.length;a++){%>
+									<div class="card-msg">
+										<span><i class="material-icons">cancel</i><%=msg[a].msg%></span>
+									</div>
+								<%}%>
+							<%}%>
+						</div>
+						<%if(user[0].nome_tipo_usuario == 'Administrador' && reclamacoes.length>0 ){%>
+						<div class="card-bairro">
+								<form>
+									<div class="container_input">
+										<input type="text" id="pesquisa" placeholder="Procurar reclamaçoes especificas">
+									</div>
+								</form>
+							</div>
+						<%}%>
+						<%if(reclamacoes.length>0){%>
+						<%for(var i = cont;i<reclamacoes.length;i++){%>
+							<div class="card-reclamacao" id="busca">
+								<div>
+									<div class="anexos">
+										<%if(reclamacoes[i].anexo_arquivo == ''){%>
+											<a ><i class="material-icons">cancel</i>  Postagem sem anexo (arquivo)</a>
+										<%}else{%>
+											<a href="<%=reclamacoes[i].anexo_arquivo%>" target="_blank"><i class="material-icons">attachment</i>Anexo reclamacao</a>
+										<%}%>
+									</div>
+									<div class="linha"></div>
+									<div>
+										<div class="assunto">
+											<h1>Assunto - <%=reclamacoes[i].tipo_reclamção%>
+												<%if(reclamacoes[i].STATUS == 'Pendente'){%>
+													<%if(user[0].nome_tipo_usuario == 'Administrador'){%>
+														<a href="reclamacoes/status/<%=reclamacoes[i].id_reclamacao%>/Resolvido" class="status_reclamacao">Marca como resolvida</a>
+												<%}else{%>
+													 <span class="status_reclamacao"><%=reclamacoes[i].STATUS%></span>
+												<%}%>
+												<%}else{%>
+													<span class="status_reclamacao"><%=reclamacoes[i].STATUS%></span>
+												<%}%>
+											</h1>
+										</div>
+										
+										<p><%=reclamacoes[i].desc_reclamacao%></p>
+										<div class="comanterios">
+											<%if(comentarios.length>0){%>
+												<%for(var z = 0; z< comentarios.length;z++){%>
+													<div class="card-reclamacao-comentarios">
+														<div class="dados">
+															<div >
+																<img src="<%=comentarios[z].perfil_usuario%>">
+																<span class="nome_comentario"><b><%=comentarios[z].nome_usuario%> (<%=comentarios[z].data_comentario%>)</b></span>
+															</div>
+															<div>
+																<p><%=comentarios[z].comentario%></p>
+															</div>
+														</div>
+													</div>
+												<%}%>		 
+											<%}%>
+										</div>
+									</div>
+									<div class="btn_comentarios">
+										<a href="reclamacoes/comentarios/<%=reclamacoes[i].STATUS%>/<%=reclamacoes[i].id_reclamacao%>"><i class="material-icons">comment</i>Comentarios <%if(comentarios.length>0){%>
+														(<%=comentarios.length%>)<%}else{%><%}%></a>
+									</div>
+								</div>
+								<%if(reclamacoes[i].STATUS == 'Pendente'){%>
+								<div class="card-comentar">
+									<form action="reclamacoes/comentar/<%=reclamacoes[i].STATUS%>/<%=reclamacoes[i].id_reclamacao%>" method="post">
+										<div class="container_input">
+											<input type="text" name="comentario" placeholder="Digite seu comentário.">
+										</div>
+									</form>
+								</div>
+								<%}%>
+							</div>
+						<%}%>
+					<%}%>
+					</div>
+
+				</div>
+			</div>
+
+		</section>
+	</main>
+	 
+	<script type="text/javascript" src="js/pesquisa.js"></script>
+	<%- include('../components/links') %>
+</html>

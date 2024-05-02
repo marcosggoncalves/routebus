@@ -1,6 +1,6 @@
-const controllers = require('./../controllers/reclamação.js');
+const controllers = require('./../controllers/reclamacao.js');
 const router = require('express').Router();
-var upload = require('../../scripts_base/upload');
+var upload = require('../../utils/upload');
 
 router.get('/', function (req, res) {
 	controllers.efetuar_reclamacao(req, res);

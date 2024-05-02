@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const consign = require('consign');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const session = require('express-session');
@@ -24,12 +23,12 @@ app.use(session({
 
 const index = require('../app/routes/index.js');
 const bairro = require('../app/routes/bairro.js');
-const admin = require('../app/routes/administração.js');
+const admin = require('../app/routes/administracao.js');
 const efetuar_reclamacao = require('../app/routes/efetuar_reclamacao.js');
 const favoritos = require('../app/routes/favoritos.js');
 const login = require('../app/routes/login.js');
 const ponto = require('../app/routes/ponto.js');
-const reclamacao = require('../app/routes/reclamações.js');
+const reclamacao = require('../app/routes/reclamacoes.js');
 
 // Carregamanto de rotas.
 app.use('/', index);

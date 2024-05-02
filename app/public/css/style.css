@@ -277,7 +277,7 @@ input[type='file']{
 	font-size:1.3rem;
 	padding-right:10px;
 }
-.card-reclamação,.card-reclamação-comentarios,.upload_arquivos,.card-horario{
+.card-reclamacao,.card-reclamacao-comentarios,.upload_arquivos,.card-horario{
 	background:var(--color-font-white);
 	padding:var(--padding_2);
 	box-shadow: var(--box-sobra);
@@ -293,7 +293,7 @@ input[type='file']{
 .card-horario h1,span,p{
 	font-size:1rem;
 }
-.card-reclamação p{
+.card-reclamacao p{
 	font-size:0.8rem;
 }
 .upload_arquivos{
@@ -304,16 +304,16 @@ input[type='file']{
 	width:60px;
 	padding-right:10px;
 }
-.card-reclamação-comentarios .dados{
+.card-reclamacao-comentarios .dados{
 	display:flex;
 	flex-direction:column;
 }
-.card-reclamação-comentarios .dados div{
+.card-reclamacao-comentarios .dados div{
 	align-items:center;
 	display:flex;
 	margin-bottom:5px;
 }
-.card-reclamação-comentarios .dados img{
+.card-reclamacao-comentarios .dados img{
 	max-width:2.5rem;
 	border-radius:100px;
 }
@@ -321,25 +321,25 @@ input[type='file']{
 	color:var(--header);
 	padding-left:10px;
 }
-.card-reclamação h1{
+.card-reclamacao h1{
 	font-weight:bold;
 	font-size:0.6rem;
 	color:var(--header);
 	line-height:1rem;
 }
-.card-reclamação .assunto{
+.card-reclamacao .assunto{
 	margin-bottom:10px;
 }
-.card-reclamação-comentarios{
+.card-reclamacao-comentarios{
 	padding: var(--padding);
 	margin-bottom:inherit;
 	box-shadow:inherit;
 }
-.card-reclamação-comentarios p,span{
+.card-reclamacao-comentarios p,span{
 	color:var(--color-font-black);
 	font-size:0.6rem;
 }
-.card-reclamação-comentarios span{
+.card-reclamacao-comentarios span{
 	line-height:2rem;
 }
 .linha{
@@ -467,7 +467,7 @@ input[type='file']{
 .card-favoritos-info ul li a i{
 	font-size:1.3rem;
 }
-.status_reclamação{
+.status_reclamacao{
 	background:var(--header);
 	font-weight: bold;
 	padding:5px 5px;
@@ -494,14 +494,14 @@ input[type='file']{
 	.aside #aside{
 		width:var(--tamanho-aside);
 	}
-	.card-reclamação-comentarios p,span{
+	.card-reclamacao-comentarios p,span{
 		color:var(--color-font-black);
 		font-size:0.8rem;
 	}
-	.card-reclamação p{
+	.card-reclamacao p{
 		font-size:0.8rem;
 	}
-	.card-reclamação h1{
+	.card-reclamacao h1{
 		font-size:1rem;
 		line-height:2rem;
 	}

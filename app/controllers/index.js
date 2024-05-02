@@ -1,4 +1,4 @@
-let connection = require('../../config/connect_banco.js');
+let connection = require('../../config/database.js');
 let pontos = require('../models/models.js')(connection);
 let md5 = require('md5');
 

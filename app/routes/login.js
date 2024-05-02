@@ -1,6 +1,6 @@
 const controllers = require('./../controllers/login.js');
 const router = require('express').Router();
-var upload = require('../../scripts_base/upload');
+var upload = require('../../utils/upload');
 
 router.get('/',(req, res) => {
 	controllers.login(req, res);

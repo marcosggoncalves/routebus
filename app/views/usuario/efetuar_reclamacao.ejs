@@ -12,7 +12,7 @@
 				<%- include('../components/header') %>
 				<div class="tela fundo">
 					<div class="titulo">
-						<h1>Registrar Reclamação</h1>
+						<h1>Registrar reclamacao</h1>
 					</div>
 					<div class="msg">
 						<%if(msg.length >0){%>
@@ -23,18 +23,18 @@
 							<%}%>
 						<%}%>
 					</div>
-					<div class="form_reclamação">
+					<div class="form_reclamacao">
 						<form action="/efetuar-reclamacao/salvar" method="post"  enctype="multipart/form-data">
 							<div class="container_input">
 								<label>Data:</label>
-								<input type="Date" name="data_de_reclamação" placeholder="">
+								<input type="Date" name="data_de_reclamacao" placeholder="">
 							</div>
 							<div class="container_input">
-								<label>Reclamação</label>
-								<textarea type='text' name='desc_reclamação' ></textarea>
+								<label>reclamacao</label>
+								<textarea type='text' name='desc_reclamacao' ></textarea>
 							</div>
 							<div class="container_input">
-								<label>Assunto reclamação</label>
+								<label>Assunto reclamacao</label>
 								<input type="text" name="tipo_reclamção" placeholder="Exemplo: Limpeza do veiculo">
 							</div>
 							<div class="container_input upload">
