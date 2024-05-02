@@ -1,10 +1,10 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 const connect = function () {
 	return mysql.createConnection({
-		host: 'localhost',
-	 	user: 'root',
-	 	password: '',
+		host: 'routebus-mysql',
+	 	user: 'routebus',
+	 	password: 'routebus#2024',
 	 	database: 'routebus'
 	});
 }

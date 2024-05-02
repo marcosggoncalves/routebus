@@ -25,12 +25,12 @@ module.exports.dados_pessoais = function (req, res) {
 }
 
 module.exports.update_dados_pessoais = function (req, res) {
-	req.assert('nome_usuario', 'Por favor, informe  nome completo !!! ').notEmpty();
-	req.assert('email_usuario', 'Por favor,  informe seu email !!!').notEmpty();
-	req.assert('senha_usuario', 'Por favor, informe uma senha !!!').notEmpty();
+	req.assert('nome_usuario', 'Por favor, informe  nome completo . ').notEmpty();
+	req.assert('email_usuario', 'Por favor,  informe seu email .').notEmpty();
+	req.assert('senha_usuario', 'Por favor, informe uma senha .').notEmpty();
 
-	req.assert('telefone_usuario', 'Por favor, informe seu telefone!!! ').notEmpty();
-	req.assert('cpf_usuario', 'Por favor, informe seu CPF !!!').notEmpty();
+	req.assert('telefone_usuario', 'Por favor, informe seu telefone. ').notEmpty();
+	req.assert('cpf_usuario', 'Por favor, informe seu CPF .').notEmpty();
 
 	var erros = req.validationErrors();
 
@@ -54,7 +54,7 @@ module.exports.update_dados_pessoais = function (req, res) {
 				res.render('usuario/dados_pessoais', {
 					titulo: 'Transporte público de Dourados-MS',
 					user: req.session.user,
-					msg: [{ msg: 'Informações foram alteradas com sucesso !!!' }]
+					msg: [{ msg: 'Informações foram alteradas com sucesso .' }]
 				});
 			}
 		});
@@ -65,7 +65,7 @@ module.exports.update_dados_pessoais = function (req, res) {
 
 
 module.exports.esqueceu_senha = function (req, res) {
-	res.render('usuario/senha', { titulo: 'Acesse sua conta !!!', msg: [], dados: [] });
+	res.render('usuario/senha', { titulo: 'Acesse sua conta .', msg: [], dados: [] });
 }
 module.exports.senha_mudar = function (req, res) {
 
@@ -97,15 +97,15 @@ module.exports.senha_mudar = function (req, res) {
 
 					transporter.sendMail(mailOptions, function (error, info) {
 						if (error) {
-							res.render('usuario/login', { titulo: 'Acesse sua conta !!!', msg: [{ msg: 'Não foi possivel enviar recuperação de senha, tente novamente.' }], dados: [] });
+							res.render('usuario/login', { titulo: 'Acesse sua conta .', msg: [{ msg: 'Não foi possivel enviar recuperação de senha, tente novamente.' }], dados: [] });
 						} else {
-							res.render('usuario/login', { titulo: 'Acesse sua conta !!!', msg: [{ msg: 'Verifique seu email ' + dados.email_usuario + '' }], dados: [] });
+							res.render('usuario/login', { titulo: 'Acesse sua conta .', msg: [{ msg: 'Verifique seu email ' + dados.email_usuario + '' }], dados: [] });
 						}
 					});
 				}
 			})
 		} else {
-			res.render('usuario/login', { titulo: 'Acesse sua conta !!!', msg: [{ msg: 'Informações de conta não encontrada !!!' }], dados: [] });
+			res.render('usuario/login', { titulo: 'Acesse sua conta .', msg: [{ msg: 'Informações de conta não encontrada .' }], dados: [] });
 		}
 	});
 }	

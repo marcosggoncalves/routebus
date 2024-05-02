@@ -3,27 +3,27 @@ let pontos = require('../models/models.js')(connection);
 let md5 = require('md5');
 
 module.exports.login = function (req, res) {
-	res.render('usuario/login', { titulo: 'Acesse sua conta !!!', msg: [], dados: [] });
+	res.render('usuario/login', { titulo: 'Acesse sua conta .', msg: [], dados: [] });
 }
 
 module.exports.cadastrar_usuario = function (req, res) {
-	res.render('usuario/cadastro', { titulo: 'Acesse sua conta !!!', msg: [] });
+	res.render('usuario/cadastro', { titulo: 'Acesse sua conta .', msg: [] });
 }
 
 module.exports.cadastrar_usuario_salvar = function (req, res) {
-	req.assert('nome_usuario', 'Por favor, informe  nome completo !!! ').notEmpty();
-	req.assert('email_usuario', 'Por favor,  informe seu email !!!').notEmpty();
-	req.assert('senha_usuario', 'Por favor, informe uma senha !!!').notEmpty();
+	req.assert('nome_usuario', 'Por favor, informe  nome completo . ').notEmpty();
+	req.assert('email_usuario', 'Por favor,  informe seu email .').notEmpty();
+	req.assert('senha_usuario', 'Por favor, informe uma senha .').notEmpty();
 
-	req.assert('telefone_usuario', 'Por favor, informe seu telefone!!! ').notEmpty();
-	req.assert('cpf_usuario', 'Por favor, informe seu CPF !!!').notEmpty();
+	req.assert('telefone_usuario', 'Por favor, informe seu telefone. ').notEmpty();
+	req.assert('cpf_usuario', 'Por favor, informe seu CPF .').notEmpty();
 
 
 	var erros = req.validationErrors();
 
 
 	if (erros) {
-		res.render('usuario/cadastro', { titulo: 'Acesse sua conta !!!', msg: erros });
+		res.render('usuario/cadastro', { titulo: 'Acesse sua conta .', msg: erros });
 		return;
 	}
 
@@ -44,7 +44,7 @@ module.exports.cadastrar_usuario_salvar = function (req, res) {
 		if (error) {
 			console.log(error);
 		} else {
-			res.render('usuario/login', { titulo: 'Acesse sua conta !!!', msg: [{ msg: 'Cadastro eviando com sucesso !!!' }], dados: [] });
+			res.render('usuario/login', { titulo: 'Acesse sua conta .', msg: [{ msg: 'Cadastro eviando com sucesso .' }], dados: [] });
 		}
 	});
 }
@@ -52,8 +52,8 @@ module.exports.cadastrar_usuario_salvar = function (req, res) {
 module.exports.autenticar = function (req, res) {
 	var dados = req.body;
 
-	req.assert('user', 'Por favor, informe seu nome !!! ').notEmpty();;
-	req.assert('password', 'Por favor, informe sua senha !!!').notEmpty();
+	req.assert('user', 'Por favor, informe seu nome . ').notEmpty();;
+	req.assert('password', 'Por favor, informe sua senha .').notEmpty();
 	req.assert('password', 'Caracter insuficiente , Preencha no minimo 6 máximo 8').len(6, 8);
 
 
@@ -61,7 +61,7 @@ module.exports.autenticar = function (req, res) {
 
 
 	if (erros) {
-		res.render('usuario/login', { titulo: 'Acesse sua conta !!!', msg: erros, dados: req.body });
+		res.render('usuario/login', { titulo: 'Acesse sua conta .', msg: erros, dados: req.body });
 		return;
 	}
 
@@ -71,7 +71,7 @@ module.exports.autenticar = function (req, res) {
 			console.log(error);
 		} else {
 			if (results.length == 0) {
-				res.render('usuario/login', { titulo: 'Acesse sua conta !!!', msg: [{ msg: 'Desculpe seu cadastro não foi encontrado !!!' }], dados: req.body });
+				res.render('usuario/login', { titulo: 'Acesse sua conta .', msg: [{ msg: 'Desculpe seu cadastro não foi encontrado .' }], dados: req.body });
 			} else {
 				req.session.user = results;
 				req.session.autenticar = true;

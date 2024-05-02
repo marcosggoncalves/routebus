@@ -92,9 +92,9 @@ module.exports.linhas_cadastros = function (req, res) {
 
 module.exports.salvar_linha = function (req, res) {
 
-	req.assert('nome_linha', 'Por favor, informe  nome da linha!!! ').notEmpty();
-	req.assert('saida_linha', 'Por favor, informe para inicio !!!').notEmpty();
-	req.assert('chegada_linha', 'Por favor, informe parada final !!!').notEmpty();
+	req.assert('nome_linha', 'Por favor, informe  nome da linha. ').notEmpty();
+	req.assert('saida_linha', 'Por favor, informe para inicio .').notEmpty();
+	req.assert('chegada_linha', 'Por favor, informe parada final .').notEmpty();
 
 	var erros = req.validationErrors();
 
@@ -113,7 +113,7 @@ module.exports.salvar_linha = function (req, res) {
 			if (erros) {
 				console.log(erros)
 			} else {
-				res.render('administrador/cadastrar_linha', { titulo: 'Transporte público de Dourados-MS', msg: [{ msg: 'Salvo com sucesso !!!' }], user: req.session.user });
+				res.render('administrador/cadastrar_linha', { titulo: 'Transporte público de Dourados-MS', msg: [{ msg: 'Salvo com sucesso .' }], user: req.session.user });
 			}
 		})
 	});
@@ -121,7 +121,7 @@ module.exports.salvar_linha = function (req, res) {
 
 module.exports.salvar_rua = function (req, res) {
 
-	req.assert('nome_rua', 'Por favor, informe  nome da rua!!! ').notEmpty();
+	req.assert('nome_rua', 'Por favor, informe  nome da rua. ').notEmpty();
 
 	var erros = req.validationErrors();
 
@@ -140,7 +140,7 @@ module.exports.salvar_rua = function (req, res) {
 			if (erros) {
 				console.log(erros)
 			} else {
-				res.render('administrador/cadastrar_linha', { titulo: 'Transporte público de Dourados-MS', msg: [{ msg: 'Salvo com sucesso !!!' }], user: req.session.user });
+				res.render('administrador/cadastrar_linha', { titulo: 'Transporte público de Dourados-MS', msg: [{ msg: 'Salvo com sucesso .' }], user: req.session.user });
 			}
 		})
 	});
@@ -157,9 +157,9 @@ module.exports.bairros_cadastros = function (req, res) {
 }
 
 module.exports.salvar_bairro = function (req, res) {
-	req.assert('lat', 'Por favor, informe  latitude do bairro !!! ').notEmpty();
-	req.assert('lng', 'Por favor, informe longitude do bairro !!!').notEmpty();
-	req.assert('nome_bairro', 'Por favor, informe nome do bairro  !!!').notEmpty();
+	req.assert('lat', 'Por favor, informe  latitude do bairro . ').notEmpty();
+	req.assert('lng', 'Por favor, informe longitude do bairro .').notEmpty();
+	req.assert('nome_bairro', 'Por favor, informe nome do bairro  .').notEmpty();
 
 	var erros = req.validationErrors();
 
@@ -178,7 +178,7 @@ module.exports.salvar_bairro = function (req, res) {
 			if (erros) {
 				console.log(erros)
 			} else {
-				res.render('administrador/cadastrar_bairro', { titulo: 'Transporte público de Dourados-MS', linhas: result, msg: [{ 'msg': 'Salvo com sucesso !!!' }], user: req.session.user });
+				res.render('administrador/cadastrar_bairro', { titulo: 'Transporte público de Dourados-MS', linhas: result, msg: [{ 'msg': 'Salvo com sucesso .' }], user: req.session.user });
 			}
 		})
 	});
@@ -199,8 +199,8 @@ module.exports.pontos_cadastros = function (req, res) {
 
 module.exports.salvar_ponto = function (req, res) {
 
-	req.assert('lat_ponto', 'Por favor, informe  latitude do ponto !!! ').notEmpty();
-	req.assert('lng_ponto', 'Por favor, informe longitude do ponto !!!').notEmpty();
+	req.assert('lat_ponto', 'Por favor, informe  latitude do ponto . ').notEmpty();
+	req.assert('lng_ponto', 'Por favor, informe longitude do ponto .').notEmpty();
 
 	var error = req.validationErrors();
 
@@ -219,7 +219,7 @@ module.exports.salvar_ponto = function (req, res) {
 				if (erros) {
 					console.log(erros)
 				} else {
-					res.render('administrador/cadastrar_pontos', { titulo: 'Transporte público de Dourados-MS', bairros: bairros, rua: ruas, msg: [{ msg: 'Cadastrado com sucesso !!!' }], user: req.session.user });
+					res.render('administrador/cadastrar_pontos', { titulo: 'Transporte público de Dourados-MS', bairros: bairros, rua: ruas, msg: [{ msg: 'Cadastrado com sucesso .' }], user: req.session.user });
 				}
 			})
 		})

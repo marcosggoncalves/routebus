@@ -10,9 +10,9 @@ module.exports.efetuar_reclamacao = function (req, res) {
 }
 
 module.exports.salvar_reclamacao = function (req, res) {
-	req.assert('data_de_reclamacao', 'Por favor, informe  data !!! ').notEmpty();
-	req.assert('desc_reclamacao', 'Por favor, descreva há reclamacao !!!').notEmpty();
-	req.assert('tipo_reclamção', 'Por favor, descreva o assunto da reclamacao !!!').notEmpty();
+	req.assert('data_de_reclamacao', 'Por favor, informe  data . ').notEmpty();
+	req.assert('desc_reclamacao', 'Por favor, descreva há reclamacao .').notEmpty();
+	req.assert('tipo_reclamção', 'Por favor, descreva o assunto da reclamacao .').notEmpty();
 
 	var erros = req.validationErrors();
 
@@ -42,7 +42,7 @@ module.exports.salvar_reclamacao = function (req, res) {
 		if (error) {
 			console.log(error);
 		} else {
-			res.render('usuario/efetuar_reclamacao', { titulo: 'Transporte público de Dourados-MS', msg: [{ msg: 'Sua reclamacao foi encaminhada para empresa viação dourados, aguarde nosso retorno, entraremos em contato em breve!!!' }], user: req.session.user });
+			res.render('usuario/efetuar_reclamacao', { titulo: 'Transporte público de Dourados-MS', msg: [{ msg: 'Sua reclamacao foi encaminhada para empresa viação dourados, aguarde nosso retorno, entraremos em contato em breve.' }], user: req.session.user });
 		}
 	});
 }

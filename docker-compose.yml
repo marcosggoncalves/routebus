@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  routebus-mysql:
+    image: mysql:latest
+    container_name: routebus-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: routebus
+      MYSQL_DATABASE: routebus
+      MYSQL_USER: routebus
+      MYSQL_PASSWORD: routebus#2024
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+      - ./backup:/docker-entrypoint-initdb.d
+
+  routebus-phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: routebus-phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: routebus-mysql
+      MYSQL_ROOT_PASSWORD: routebus#2024
+    ports:
+      - "8081:80"
+
+  routebus-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: routebus-app
+    restart: always
+    depends_on:
+      - routebus-mysql
+    ports:
+      - "3000:3000"

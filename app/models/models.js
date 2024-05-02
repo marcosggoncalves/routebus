@@ -63,7 +63,7 @@ class Models {
 		this.connection.query('select*from favoritos,bairros,usuarios where favoritos.id_usuario = usuarios.id_usuario and favoritos.id_bairro = bairros.id_bairro and usuarios.id_usuario  =?',id_usuario,callback);	
 	}
 	logar(user,password,callback){
-		this.connection.query('select*from usuarios,tipo_de_usuario where usuarios.id_tipo_usuario = tipo_de_usuario.id_tipo_usuario and  nome_usuario="'+user+'" and senha_usuario="'+password+'"',callback);
+		this.connection.query('select*from usuarios,tipo_de_usuario where usuarios.id_tipo_usuario = tipo_de_usuario.id_tipo_usuario and  email_usuario="'+user+'" and senha_usuario="'+password+'"',callback);
 	}
 	recuperar_senha(cpf_usuario,callback){
 		this.connection.query('select*from usuarios where usuarios.cpf_usuario =?',cpf_usuario,callback);
