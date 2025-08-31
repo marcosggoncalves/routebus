@@ -1,4 +1,5 @@
 ## Projeto TCC RouteBus 
+
 ### Trabalho de conclusão de curso.
 
 #### INTRODUÇÃO
@@ -14,3 +15,51 @@ O projeto propõe atender e facilitar as vidas das pessoas que utilizam o transp
 Mapear as rotas dos ônibus.
 Tabular os horários de circulação dos ônibus.
 Cadastrar usuários para utilizar o aplicativo.  	
+
+## Iniciando a Aplicação
+
+Para iniciar a aplicação, siga estes passos:
+
+1. Abra um terminal.
+2. Navegue até o diretório raiz do projeto.
+3. Execute o seguinte comando para iniciar os contêineres Docker em segundo plano:
+
+```
+   docker-compose up -d
+```
+
+Isso iniciará todos os serviços necessários para a aplicação Routebus.
+
+## Parando a Aplicação
+
+Para parar a aplicação e desligar os contêineres Docker, siga estes passos:
+
+1. Abra um terminal.
+2. Navegue até o diretório raiz do projeto.
+3. Execute o seguinte comando:
+
+```
+   docker-compose down
+```
+
+Aplicação vai rodar no localhost:3000
+
+Isso desligará todos os contêineres Docker relacionados à aplicação Routebus.
+
+## Login Usuário
+
+- **E-mail:** marcoslopes5687@gmail.com
+- **Senha:** 99510796
+
+- **E-mail:** viacaodourados@gmail.com
+- **Senha:** 99510796
+
+ ## Tela 1 - Login
+![Painel da Aplicação - TELA 1](https://github.com/marcosggoncalves/routebus/blob/master/prints/login.png)
+
+ ## Tela 2 - Painel
+![Painel da painel - TELA 1](https://github.com/marcosggoncalves/routebus/blob/master/prints/painel.png)
+
+ ## Tela 3 - Cadastro
+![Painel da painel - TELA 1](https://github.com/marcosggoncalves/routebus/blob/master/prints/cadastro.png)
+

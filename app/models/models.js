@@ -15,7 +15,7 @@ class Models {
 		this.connection.query('select*from sentidovia', callback);
 	}
 	linhas(callback) {
-		this.connection.query('select*from linhaS', callback);
+		this.connection.query('select*from linhas', callback);
 	}
 	ruas(callback) {
 		this.connection.query('select*from ruas', callback);

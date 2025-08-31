@@ -2,19 +2,25 @@ version: '3'
 
 services:
   routebus-mysql:
-    image: mysql:latest
+    image: mysql:8.0
     container_name: routebus-mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: routebus
+      MYSQL_ROOT_PASSWORD: "routebus#2024"
       MYSQL_DATABASE: routebus
       MYSQL_USER: routebus
-      MYSQL_PASSWORD: routebus#2024
+      MYSQL_PASSWORD: "routebus#2024"
     ports:
       - "3306:3306"
     volumes:
-      - ./mysql_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql      # volume Docker gerenciado
       - ./backup:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -uroot -p\"routebus#2024\" -e 'SELECT 1'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
 
   routebus-phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -22,7 +28,7 @@ services:
     restart: always
     environment:
       PMA_HOST: routebus-mysql
-      MYSQL_ROOT_PASSWORD: routebus#2024
+      MYSQL_ROOT_PASSWORD: "routebus#2024"
     ports:
       - "8081:80"
 
@@ -33,6 +39,10 @@ services:
     container_name: routebus-app
     restart: always
     depends_on:
-      - routebus-mysql
+      routebus-mysql:
+        condition: service_healthy
     ports:
       - "3000:3000"
+
+volumes:
+  mysql_data:
